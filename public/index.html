@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>引越ナビ — 引っ越しの手続きをもう忘れない</title>
+<meta name="description" content="引っ越し日を入力するだけで必要な手続きをすべてリスト化。電気・ガス・水道・役所・郵便局など、やることを自動で管理。">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="引越ナビ">
+<meta name="theme-color" content="#3366ff">
+<meta property="og:title" content="引越ナビ — 引っ越しの手続きをもう忘れない">
+<meta property="og:description" content="引っ越し日を入れるだけ。やること全部、自動でリスト化。無料で使える引っ越し手続き管理アプリ。">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<link rel="icon" href="icon-192.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+</head>
+<body>
+
+<style>
+:root {
+  --bg: #f4f6fa;
+  --bg-card: #ffffff;
+  --bg-input: #edf0f7;
+  --bg-hover: #f8f9fc;
+  --bg-glass: rgba(244, 246, 250, 0.85);
+  --text: #1a1e2e;
+  --text-dim: #5a6580;
+  --text-muted: #9aa0b8;
+  --primary: #3366ff;
+  --primary-light: #ebf0ff;
+  --primary-hover: #2952cc;
+  --teal: #0d9488;
+  --teal-light: #e6f7f5;
+  --amber: #d97706;
+  --amber-light: #fef3e2;
+  --red: #dc2626;
+  --red-light: #fde8e8;
+  --green: #16a34a;
+  --green-light: #e6f5ec;
+  --border: #e4e8f0;
+  --shadow: 0 1px 4px rgba(20,30,60,0.06), 0 0 1px rgba(20,30,60,0.04);
+  --shadow-lg: 0 8px 30px rgba(20,30,60,0.1);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1017;
+    --bg-card: #171c28;
+    --bg-input: #1e2436;
+    --bg-hover: #1e2436;
+    --bg-glass: rgba(13, 16, 23, 0.88);
+    --text: #e4e8f2;
+    --text-dim: #8892aa;
+    --text-muted: #525c74;
+    --primary: #5b8aff;
+    --primary-light: rgba(91,138,255,0.12);
+    --primary-hover: #7aa0ff;
+    --teal: #2dd4bf;
+    --teal-light: rgba(45,212,191,0.1);
+    --amber: #fbbf24;
+    --amber-light: rgba(251,191,36,0.1);
+    --red: #f87171;
+    --red-light: rgba(248,113,113,0.08);
+    --green: #4ade80;
+    --green-light: rgba(74,222,128,0.1);
+    --border: #252d40;
+    --shadow: 0 1px 4px rgba(0,0,0,0.2);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d1017;
+  --bg-card: #171c28;
+  --bg-input: #1e2436;
+  --bg-hover: #1e2436;
+  --bg-glass: rgba(13, 16, 23, 0.88);
+  --text: #e4e8f2;
+  --text-dim: #8892aa;
+  --text-muted: #525c74;
+  --primary: #5b8aff;
+  --primary-light: rgba(91,138,255,0.12);
+  --primary-hover: #7aa0ff;
+  --teal: #2dd4bf;
+  --teal-light: rgba(45,212,191,0.1);
+  --amber: #fbbf24;
+  --amber-light: rgba(251,191,36,0.1);
+  --red: #f87171;
+  --red-light: rgba(248,113,113,0.08);
+  --green: #4ade80;
+  --green-light: rgba(74,222,128,0.1);
+  --border: #252d40;
+  --shadow: 0 1px 4px rgba(0,0,0,0.2);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans JP', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+[hidden] { display: none !important; }
+
+.app { max-width: 480px; margin: 0 auto; padding-bottom: calc(1.5rem + var(--safe-bottom)); }
+
+/* ── Onboarding ── */
+.onboard {
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  padding: 0 1.25rem;
+}
+
+.onboard-top {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 2rem 0;
+}
+
+.brand-mark {
+  width: 80px; height: 80px; border-radius: 22px;
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; margin-bottom: 1.2rem;
+  box-shadow: 0 8px 24px rgba(51,102,255,0.25);
+}
+
+.onboard-top h1 {
+  font-size: 1.75rem; font-weight: 900;
+  letter-spacing: -0.03em; margin-bottom: 0.4rem;
+}
+
+.onboard-top p {
+  color: var(--text-dim); font-size: 0.92rem; font-weight: 400;
+  max-width: 280px;
+}
+
+.onboard-form {
+  background: var(--bg-card); border-radius: 20px 20px 0 0;
+  padding: 1.5rem 1.25rem calc(2rem + var(--safe-bottom));
+  box-shadow: 0 -4px 30px rgba(20,30,60,0.08);
+}
+
+.form-group { margin-bottom: 1.1rem; }
+
+.form-group label {
+  display: block; font-size: 0.75rem; font-weight: 600;
+  color: var(--text-dim); margin-bottom: 0.35rem;
+  letter-spacing: 0.02em;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%; padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 1rem; font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg-input); color: var(--text);
+  transition: border-color 0.15s;
+  appearance: none; -webkit-appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa0b8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none; border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.btn {
+  width: 100%; padding: 0.9rem; border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem; font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer; transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary:active { transform: scale(0.98); }
+
+/* ── Dashboard Header ── */
+.dash-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  padding: 0.8rem 1.25rem; border-bottom: 1px solid var(--border);
+}
+
+.dash-bar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.dash-brand { display: flex; align-items: center; gap: 0.5rem; }
+
+.dash-brand .icon-sm {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+
+.dash-brand h1 { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em; }
+
+.dash-actions { display: flex; gap: 0.4rem; }
+
+.btn-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-card);
+  color: var(--text-dim); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; transition: all 0.15s;
+}
+
+.btn-icon:hover { border-color: var(--primary); color: var(--primary); }
+.btn-icon.danger:hover { border-color: var(--red); color: var(--red); }
+
+/* ── Move date banner ── */
+.move-banner {
+  margin: 0.8rem 1.25rem 0;
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 1rem 1.1rem; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 1rem;
+}
+
+.countdown {
+  min-width: 64px; text-align: center;
+  padding: 0.5rem 0.6rem; border-radius: var(--radius-sm);
+  background: var(--primary-light);
+}
+
+.countdown .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--primary); line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown .unit {
+  font-size: 0.6rem; font-weight: 600;
+  color: var(--primary); letter-spacing: 0.04em;
+}
+
+.countdown.urgent { background: var(--red-light); }
+.countdown.urgent .num, .countdown.urgent .unit { color: var(--red); }
+
+.move-info { flex: 1; min-width: 0; }
+
+.move-info .route {
+  font-size: 0.82rem; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.move-info .route .arrow { color: var(--text-muted); margin: 0 0.3rem; }
+
+.move-date-row {
+  display: flex; align-items: center; gap: 0.4rem; margin-top: 0.2rem;
+}
+
+.move-date-row input[type="date"] {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem; font-weight: 500;
+  padding: 0.2rem 0.4rem; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--bg-input);
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+
+.move-date-row input[type="date"]:focus {
+  outline: none; border-color: var(--primary);
+}
+
+/* ── Progress ── */
+.progress-section { padding: 0.8rem 1.25rem 0; }
+
+.progress-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 1rem 1.1rem; box-shadow: var(--shadow);
+}
+
+.progress-top {
+  display: flex; justify-content: space-between;
+  align-items: baseline; margin-bottom: 0.5rem;
+}
+
+.progress-top .label { font-size: 0.78rem; font-weight: 600; color: var(--text-dim); }
+
+.progress-top .pct {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem; font-weight: 700; color: var(--primary);
+}
+
+.progress-track {
+  height: 8px; background: var(--bg-input);
+  border-radius: 4px; overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%; border-radius: 4px; background: var(--primary);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progress-stats {
+  display: flex; gap: 1rem; margin-top: 0.6rem;
+}
+
+.progress-stats .ps {
+  font-size: 0.72rem; color: var(--text-muted); font-weight: 500;
+}
+
+.progress-stats .ps b {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Filters ── */
+.filter-bar {
+  padding: 0.8rem 1.25rem 0;
+  display: flex; gap: 0.35rem; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+
+.chip {
+  padding: 0.4rem 0.85rem; border-radius: 20px;
+  border: 1.5px solid var(--border); background: var(--bg-card);
+  color: var(--text-dim); font-size: 0.78rem; font-weight: 500;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.15s; flex-shrink: 0;
+}
+
+.chip:active { transform: scale(0.96); }
+
+.chip.active {
+  background: var(--primary); color: #fff;
+  border-color: var(--primary);
+}
+
+/* ── Task groups ── */
+.task-section { padding: 0.6rem 1.25rem 0; }
+
+.cat-bar {
+  display: flex; align-items: center; gap: 0.45rem;
+  padding: 0.6rem 0; cursor: pointer; user-select: none;
+}
+
+.cat-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+.cat-bar h2 { font-size: 0.82rem; font-weight: 700; flex: 1; }
+
+.cat-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem; font-weight: 600;
+  color: var(--text-muted); background: var(--bg-input);
+  padding: 0.15rem 0.5rem; border-radius: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cat-chevron {
+  color: var(--text-muted); font-size: 0.65rem;
+  transition: transform 0.2s;
+}
+.cat-bar.collapsed .cat-chevron { transform: rotate(-90deg); }
+
+.task-items { display: grid; gap: 0.35rem; }
+.task-items.collapsed { display: none; }
+
+/* ── Task card ── */
+.task-card {
+  background: var(--bg-card); border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  padding: 0.85rem 0.9rem; box-shadow: var(--shadow);
+  transition: opacity 0.3s, border-color 0.15s;
+}
+
+.task-card.done { opacity: 0.5; }
+
+.task-top {
+  display: flex; align-items: flex-start; gap: 0.65rem;
+}
+
+.checkbox {
+  width: 24px; height: 24px; border-radius: 8px;
+  border: 2px solid var(--border); background: var(--bg-card);
+  cursor: pointer; flex-shrink: 0; margin-top: 0.05rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+
+.checkbox:active { transform: scale(0.9); }
+.checkbox:hover { border-color: var(--primary); }
+
+.checkbox.checked {
+  background: var(--green); border-color: var(--green);
+}
+
+.checkbox.checked svg { display: block; }
+.checkbox svg { display: none; }
+
+.task-body { flex: 1; min-width: 0; }
+
+.task-title-row {
+  display: flex; align-items: center; gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.task-card.done .task-name { text-decoration: line-through; color: var(--text-muted); }
+
+.task-name { font-size: 0.88rem; font-weight: 600; }
+
+.prio-tag {
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.1rem 0.4rem; border-radius: 4px;
+  text-transform: uppercase; flex-shrink: 0;
+}
+
+.prio-high { color: var(--red); background: var(--red-light); }
+.prio-mid  { color: var(--amber); background: var(--amber-light); }
+.prio-low  { color: var(--teal); background: var(--teal-light); }
+
+.task-row2 {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.3rem; flex-wrap: wrap;
+}
+
+.dl-input {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem; font-weight: 500;
+  padding: 0.22rem 0.45rem; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--bg-input);
+  color: var(--text); font-variant-numeric: tabular-nums;
+}
+.dl-input:focus { outline: none; border-color: var(--primary); }
+
+.dl-badge {
+  font-size: 0.68rem; font-weight: 600; padding: 0.1rem 0.45rem;
+  border-radius: 5px;
+}
+
+.dl-overdue { color: var(--red); background: var(--red-light); }
+.dl-soon    { color: var(--amber); background: var(--amber-light); }
+.dl-ok      { color: var(--green); background: var(--green-light); }
+
+.task-expand-btn {
+  font-size: 0.72rem; color: var(--text-muted); cursor: pointer;
+  background: none; border: none; font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500; padding: 0.15rem 0;
+  margin-left: auto;
+}
+.task-expand-btn:hover { color: var(--primary); }
+
+.task-detail-body {
+  margin-top: 0.55rem; padding-top: 0.55rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem; color: var(--text-dim);
+  line-height: 1.65; font-weight: 400;
+}
+
+.task-detail-body a {
+  display: inline-flex; align-items: center; gap: 0.2rem;
+  margin-top: 0.4rem; font-size: 0.78rem; font-weight: 600;
+  color: var(--primary); text-decoration: none;
+  padding: 0.35rem 0.7rem; background: var(--primary-light);
+  border-radius: 7px;
+}
+.task-detail-body a:hover { text-decoration: underline; }
+
+/* ── Add task ── */
+.add-section { padding: 0.8rem 1.25rem; }
+
+.add-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  border: 1.5px dashed var(--border); padding: 0.8rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.add-toggle {
+  display: flex; align-items: center; gap: 0.4rem;
+  cursor: pointer; background: none; border: none;
+  color: var(--text-muted); font-size: 0.82rem; font-weight: 500;
+  font-family: 'Noto Sans JP', sans-serif; width: 100%;
+  padding: 0.2rem 0;
+}
+.add-toggle:hover { color: var(--primary); }
+
+.add-form { margin-top: 0.8rem; }
+
+.add-form input, .add-form select {
+  width: 100%; padding: 0.65rem 0.8rem; margin-bottom: 0.5rem;
+  border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 0.88rem; font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg-input); color: var(--text);
+}
+
+.add-form input:focus, .add-form select:focus {
+  outline: none; border-color: var(--primary);
+}
+
+.add-row { display: flex; gap: 0.4rem; }
+.add-row > * { flex: 1; }
+
+.btn-sm {
+  padding: 0.6rem; border: none; border-radius: var(--radius-sm);
+  font-size: 0.85rem; font-weight: 600;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer; margin-top: 0.2rem;
+}
+
+.btn-sm.primary { background: var(--primary); color: #fff; }
+.btn-sm.primary:active { transform: scale(0.98); }
+
+/* ── Completion banner ── */
+.complete-banner {
+  margin: 0.8rem 1.25rem 0; padding: 1.2rem;
+  background: var(--green-light); border-radius: var(--radius);
+  text-align: center; border: 1.5px solid var(--green);
+}
+
+.complete-banner .cb-icon { font-size: 2rem; margin-bottom: 0.3rem; }
+.complete-banner h3 { font-size: 1rem; font-weight: 800; color: var(--green); }
+.complete-banner p { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
+
+/* ── Responsive ── */
+@media (min-width: 481px) {
+  .app { padding: 0 0 2rem; }
+  .onboard-form { border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+  .onboard { min-height: auto; padding-top: 3rem; }
+}
+</style>
+
+<div class="app">
+  <!-- Onboarding -->
+  <div class="onboard" id="onboard">
+    <div class="onboard-top">
+      <div class="brand-mark">🏠</div>
+      <h1>引越ナビ</h1>
+      <p>引っ越し日を入れるだけ。<br>やること全部、自動でリスト化。</p>
+    </div>
+    <div class="onboard-form">
+      <div class="form-group">
+        <label>引っ越し予定日</label>
+        <input type="date" id="inputDate">
+      </div>
+      <div class="form-group">
+        <label>今の都道府県</label>
+        <select id="inputFrom"><option value="">選択</option></select>
+      </div>
+      <div class="form-group">
+        <label>引っ越し先</label>
+        <select id="inputTo"><option value="">選択</option></select>
+      </div>
+      <div class="form-group">
+        <label>世帯</label>
+        <select id="inputHousehold">
+          <option value="single">一人暮らし</option>
+          <option value="couple">二人暮らし</option>
+          <option value="family">ファミリー</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="start()">リストを作成 →</button>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dash" hidden>
+    <div class="dash-bar">
+      <div class="dash-bar-inner">
+        <div class="dash-brand">
+          <div class="icon-sm">🏠</div>
+          <h1>引越ナビ</h1>
+        </div>
+        <div class="dash-actions">
+          <button class="btn-icon danger" onclick="resetApp()" title="リセット">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="move-banner" id="moveBanner"></div>
+    <div class="progress-section"><div class="progress-card" id="progressCard"></div></div>
+    <div class="filter-bar" id="filterBar"></div>
+    <div id="complete-area"></div>
+    <div id="taskArea"></div>
+    <div class="add-section" id="addSection"></div>
+  </div>
+</div>
+
+<script>
+const PREFS = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'];
+
+const CAT = {
+  housing: { label: '住居', color: 'var(--primary)' },
+  utility: { label: 'ライフライン', color: 'var(--amber)' },
+  admin:   { label: '行政手続き', color: 'var(--teal)' },
+  finance: { label: '金融・保険', color: 'var(--primary)' },
+  other:   { label: 'その他', color: 'var(--text-muted)' }
+};
+const CAT_ORDER = ['housing','utility','admin','finance','other'];
+
+let S = { moveDate:'', from:'', to:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
+let filter = 'all';
+let addOpen = false;
+
+function save() { try { localStorage.setItem('hk2', JSON.stringify(S)); } catch(e){} }
+function load() {
+  try {
+    const d = localStorage.getItem('hk2');
+    if (d) { S = JSON.parse(d); S.done=S.done||{}; S.dl=S.dl||{}; S.custom=S.custom||[]; S.collapsed=S.collapsed||{}; return true; }
+  } catch(e){} return false;
+}
+
+function daysBetween(a, b) {
+  const da = new Date(a); da.setHours(0,0,0,0);
+  const db = new Date(b); db.setHours(0,0,0,0);
+  return Math.ceil((db - da) / 86400000);
+}
+
+function dateOffset(base, days) {
+  const d = new Date(base); d.setDate(d.getDate() + days);
+  return d.toISOString().split('T')[0];
+}
+
+function todayStr() { return new Date().toISOString().split('T')[0]; }
+
+function baseTasks() {
+  const m = S.moveDate;
+  const cross = S.from !== S.to;
+  const kids = S.hh === 'family';
+  const t = [
+    { id:'rental',    cat:'housing', name:'賃貸の解約通知',             dl:dateOffset(m,-30), p:'high', detail:'退去の1〜2ヶ月前までに管理会社・大家に連絡。契約書で解約予告期間を確認。' },
+    { id:'mover',     cat:'housing', name:'引っ越し業者の手配',          dl:dateOffset(m,-21), p:'high', detail:'繁忙期（3〜4月）は2ヶ月前に予約。複数社の相見積もりで費用を比較。', link:'https://hikkoshi.suumo.jp/', linkLabel:'SUUMO見積もり' },
+    { id:'inet',      cat:'utility', name:'ネット回線の移転・解約',       dl:dateOffset(m,-21), p:'high', detail:'工事が必要な場合は3〜4週間かかる。引っ越し先の対応回線も確認。' },
+    { id:'electric',  cat:'utility', name:'電気の停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'現住所の停止と新住所の開始を手続き。Webで完結する電力会社が多い。', link:'https://www.tepco.co.jp/ep/private/moving/', linkLabel:'東京電力(例)' },
+    { id:'gas',       cat:'utility', name:'ガスの停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'開栓には立ち会いが必要。引っ越し当日に開栓予約を入れる。', link:'https://home.tokyo-gas.co.jp/procedure/', linkLabel:'東京ガス(例)' },
+    { id:'water',     cat:'utility', name:'水道の停止・開始',            dl:dateOffset(m,-7),  p:'mid',  detail:'市区町村の水道局にWebまたは電話で手続き。地域で窓口が異なる。' },
+    { id:'post',      cat:'admin',   name:'郵便物の転送届',              dl:dateOffset(m,-14), p:'high', detail:'届出から転送開始まで3〜7営業日。転送は1年間。Webでも届出可能。', link:'https://www.post.japanpost.jp/service/tenkyo/', linkLabel:'e転居' },
+    { id:'move_out',  cat:'admin',   name:'転出届（現住所の役所）',       dl:dateOffset(m,-14), p:'high', detail:'引っ越しの14日前から届出可能。転出証明書を受け取る。マイナンバーカードでオンライン申請可。' },
+    { id:'move_in',   cat:'admin',   name:'転入届（新住所の役所）',       dl:dateOffset(m,14),  p:'high', detail:'引っ越し後14日以内に届出。転出証明書・本人確認書類・マイナンバーカードを持参。' },
+    { id:'mynum',     cat:'admin',   name:'マイナンバーの住所変更',       dl:dateOffset(m,14),  p:'mid',  detail:'転入届と同時に手続き可能。暗証番号が必要。' },
+    { id:'license',   cat:'admin',   name:'運転免許証の住所変更',         dl:dateOffset(m,30),  p:'mid',  detail:'新住所の警察署・免許センターで手続き。新住所の住民票が必要。' },
+    { id:'bank',      cat:'finance', name:'銀行口座の住所変更',           dl:dateOffset(m,14),  p:'mid',  detail:'多くの銀行はアプリ・Webで変更可能。複数口座がある場合は漏れなく。' },
+    { id:'card',      cat:'finance', name:'クレカの住所変更',             dl:dateOffset(m,14),  p:'mid',  detail:'各カード会社のWeb会員ページから変更。' },
+    { id:'insurance', cat:'finance', name:'保険の住所変更',               dl:dateOffset(m,30),  p:'low',  detail:'生命保険・損害保険・自動車保険など。Webまたは電話で手続き。' },
+    { id:'nhk',       cat:'other',   name:'NHKの住所変更',               dl:dateOffset(m,14),  p:'low',  detail:'Webで手続き可能。', link:'https://www.nhk.or.jp/css/', linkLabel:'NHK届出' },
+    { id:'ec',        cat:'other',   name:'Amazon等ECの住所変更',         dl:dateOffset(m,-3),  p:'low',  detail:'配送先住所を更新。定期便がある場合は特に早めに。' },
+    { id:'sub',       cat:'other',   name:'サブスクの住所確認',           dl:dateOffset(m,7),   p:'low',  detail:'物品配送系（食材宅配等）は変更必要。動画系は住所不要。' },
+    { id:'greet',     cat:'other',   name:'近隣への挨拶品準備',           dl:dateOffset(m,-3),  p:'low',  detail:'500〜1,000円の日用品（タオル、洗剤等）が定番。のし紙は「御挨拶」。' },
+  ];
+  if (cross) {
+    t.push({ id:'kokuho', cat:'admin', name:'国民健康保険の切替', dl:dateOffset(m,14), p:'high', detail:'旧住所で資格喪失届、新住所で加入届。会社の社保加入者は不要。' });
+    t.push({ id:'nenkin', cat:'admin', name:'国民年金の住所変更', dl:dateOffset(m,14), p:'mid',  detail:'マイナンバーと基礎年金番号が紐付いている場合は届出不要のことも。' });
+  }
+  if (kids) {
+    t.push({ id:'school',  cat:'admin', name:'学校の転校手続き',       dl:dateOffset(m,-14), p:'high', detail:'在学証明書・教科書給与証明書を取得し、新住所の教育委員会で転入手続き。' });
+    t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'転出先で15日以内に認定請求書を提出。遅れると受給できない月が発生。' });
+    t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'旧住所で喪失届、新住所で新規申請。助成内容は自治体で異なる。' });
+  }
+  return t;
+}
+
+function allTasks() {
+  const b = baseTasks();
+  S.custom.forEach(c => b.push(c));
+  return b;
+}
+
+function effDl(t) { return S.dl[t.id] || t.dl; }
+
+/* ── Render ── */
+function render() {
+  const tasks = allTasks();
+  const today = todayStr();
+  const dLeft = daysBetween(today, S.moveDate);
+
+  // Move banner
+  const urgent = dLeft <= 7;
+  document.getElementById('moveBanner').innerHTML = `
+    <div class="countdown ${urgent ? 'urgent' : ''}">
+      <div class="num">${dLeft < 0 ? Math.abs(dLeft) : dLeft}</div>
+      <div class="unit">${dLeft < 0 ? '日経過' : '日前'}</div>
+    </div>
+    <div class="move-info">
+      <div class="route">${S.from}<span class="arrow"> → </span>${S.to}</div>
+      <div class="move-date-row">
+        <input type="date" id="editMoveDate" value="${S.moveDate}">
+      </div>
+    </div>
+  `;
+  document.getElementById('editMoveDate').addEventListener('change', function() {
+    S.moveDate = this.value; S.dl = {}; save(); render();
+  });
+
+  // Progress
+  const done = tasks.filter(t => S.done[t.id]).length;
+  const total = tasks.length;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('progressCard').innerHTML = `
+    <div class="progress-top">
+      <span class="label">進捗</span>
+      <span class="pct">${pct}%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-stats">
+      <span class="ps">完了 <b>${done}</b></span>
+      <span class="ps">残り <b>${total - done}</b></span>
+      <span class="ps">全 <b>${total}</b></span>
+    </div>
+  `;
+
+  // Completion
+  const ca = document.getElementById('complete-area');
+  if (pct === 100 && total > 0) {
+    ca.innerHTML = `<div class="complete-banner"><div class="cb-icon">🎉</div><h3>すべて完了！</h3><p>お疲れ様でした。素敵な新生活を！</p></div>`;
+  } else { ca.innerHTML = ''; }
+
+  // Filters
+  const overdue = tasks.filter(t => !S.done[t.id] && daysBetween(today, effDl(t)) < 0).length;
+  const soon = tasks.filter(t => !S.done[t.id] && daysBetween(today, effDl(t)) >= 0 && daysBetween(today, effDl(t)) <= 7).length;
+  const filters = [
+    { key:'all', label:`すべて (${total})` },
+    { key:'todo', label:`未完了 (${total - done})` },
+    { key:'urgent', label:`期限間近 (${soon + overdue})` },
+    { key:'done', label:`完了 (${done})` },
+  ];
+  const fb = document.getElementById('filterBar');
+  fb.innerHTML = '';
+  filters.forEach(f => {
+    const el = document.createElement('button');
+    el.className = 'chip' + (filter === f.key ? ' active' : '');
+    el.textContent = f.label;
+    el.onclick = () => { filter = f.key; render(); };
+    fb.appendChild(el);
+  });
+
+  // Tasks
+  const area = document.getElementById('taskArea');
+  area.innerHTML = '';
+
+  CAT_ORDER.forEach(ck => {
+    let ct = tasks.filter(t => t.cat === ck);
+    if (filter === 'todo') ct = ct.filter(t => !S.done[t.id]);
+    if (filter === 'done') ct = ct.filter(t => S.done[t.id]);
+    if (filter === 'urgent') ct = ct.filter(t => !S.done[t.id] && daysBetween(today, effDl(t)) <= 7);
+    if (!ct.length) return;
+
+    const catDone = ct.filter(t => S.done[t.id]).length;
+    const isCollapsed = !!S.collapsed[ck];
+
+    const sec = document.createElement('div');
+    sec.className = 'task-section';
+
+    const bar = document.createElement('div');
+    bar.className = 'cat-bar' + (isCollapsed ? ' collapsed' : '');
+    bar.innerHTML = `
+      <div class="cat-dot" style="background:${CAT[ck].color}"></div>
+      <h2>${CAT[ck].label}</h2>
+      <span class="cat-badge">${catDone}/${ct.length}</span>
+      <span class="cat-chevron">▼</span>
+    `;
+    bar.onclick = () => { S.collapsed[ck] = !S.collapsed[ck]; save(); render(); };
+    sec.appendChild(bar);
+
+    const list = document.createElement('div');
+    list.className = 'task-items' + (isCollapsed ? ' collapsed' : '');
+
+    ct.forEach(t => {
+      const deadline = effDl(t);
+      const diff = daysBetween(today, deadline);
+      const isDone = !!S.done[t.id];
+
+      let badge = '';
+      if (!isDone) {
+        if (diff < 0) badge = `<span class="dl-badge dl-overdue">${Math.abs(diff)}日超過</span>`;
+        else if (diff === 0) badge = `<span class="dl-badge dl-overdue">今日</span>`;
+        else if (diff <= 7) badge = `<span class="dl-badge dl-soon">あと${diff}日</span>`;
+        else badge = `<span class="dl-badge dl-ok">あと${diff}日</span>`;
+      }
+
+      const pc = t.p === 'high' ? 'prio-high' : t.p === 'mid' ? 'prio-mid' : 'prio-low';
+      const pl = t.p === 'high' ? '重要' : t.p === 'mid' ? '中' : '任意';
+
+      const card = document.createElement('div');
+      card.className = 'task-card' + (isDone ? ' done' : '');
+      card.innerHTML = `
+        <div class="task-top">
+          <div class="checkbox ${isDone ? 'checked' : ''}" data-id="${t.id}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div class="task-body">
+            <div class="task-title-row">
+              <span class="task-name">${t.name}</span>
+              <span class="prio-tag ${pc}">${pl}</span>
+            </div>
+            <div class="task-row2">
+              <input type="date" class="dl-input" value="${deadline}" data-tid="${t.id}">
+              ${badge}
+              <button class="task-expand-btn" data-eid="${t.id}">詳細 ▾</button>
+            </div>
+            <div class="task-detail-body" id="td-${t.id}" hidden>
+              ${t.detail}
+              ${t.link ? `<br><a href="${t.link}" target="_blank" rel="noopener">${t.linkLabel || '手続きサイト'} →</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      card.querySelector('.checkbox').addEventListener('click', () => {
+        S.done[t.id] = !S.done[t.id]; save(); render();
+      });
+
+      card.querySelector('.dl-input').addEventListener('change', function() {
+        S.dl[t.id] = this.value; save(); render();
+      });
+
+      card.querySelector('.task-expand-btn').addEventListener('click', function() {
+        const el = document.getElementById('td-' + t.id);
+        el.hidden = !el.hidden;
+        this.textContent = el.hidden ? '詳細 ▾' : '閉じる ▴';
+      });
+
+      list.appendChild(card);
+    });
+
+    sec.appendChild(list);
+    area.appendChild(sec);
+  });
+
+  // Add task
+  renderAddTask();
+}
+
+function renderAddTask() {
+  const sec = document.getElementById('addSection');
+  if (!addOpen) {
+    sec.innerHTML = `<div class="add-card"><button class="add-toggle" id="addToggle">＋ タスクを追加</button></div>`;
+    document.getElementById('addToggle').onclick = () => { addOpen = true; renderAddTask(); };
+    return;
+  }
+  sec.innerHTML = `
+    <div class="add-card">
+      <button class="add-toggle" id="addToggle">✕ 閉じる</button>
+      <div class="add-form">
+        <input type="text" id="addName" placeholder="タスク名">
+        <div class="add-row">
+          <input type="date" id="addDl">
+          <select id="addCat">
+            ${CAT_ORDER.map(k => `<option value="${k}">${CAT[k].label}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn-sm primary" id="addSubmit" style="width:100%">追加</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('addDl').value = S.moveDate;
+  document.getElementById('addToggle').onclick = () => { addOpen = false; renderAddTask(); };
+  document.getElementById('addSubmit').onclick = () => {
+    const name = document.getElementById('addName').value.trim();
+    const dl = document.getElementById('addDl').value;
+    const cat = document.getElementById('addCat').value;
+    if (!name) return;
+    const id = 'custom_' + Date.now();
+    S.custom.push({ id, cat, name, dl, p:'mid', detail:'カスタムタスク' });
+    save(); addOpen = false; render();
+  };
+}
+
+function start() {
+  const md = document.getElementById('inputDate').value;
+  const f = document.getElementById('inputFrom').value;
+  const t = document.getElementById('inputTo').value;
+  const h = document.getElementById('inputHousehold').value;
+  if (!md || !f || !t) { alert('すべて入力してください'); return; }
+  S = { moveDate:md, from:f, to:t, hh:h, done:{}, dl:{}, custom:[], collapsed:{} };
+  save(); showDash();
+}
+
+function resetApp() {
+  if (!confirm('すべての進捗をリセットしますか？')) return;
+  try { localStorage.removeItem('hk2'); } catch(e){}
+  S = { moveDate:'', from:'', to:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
+  document.getElementById('dash').hidden = true;
+  document.getElementById('onboard').hidden = false;
+}
+
+function showDash() {
+  document.getElementById('onboard').hidden = true;
+  document.getElementById('dash').hidden = false;
+  render();
+}
+
+// Init
+(function() {
+  ['inputFrom','inputTo'].forEach(id => {
+    const sel = document.getElementById(id);
+    PREFS.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
+  });
+  const d = new Date(); d.setDate(d.getDate() + 30);
+  document.getElementById('inputDate').value = d.toISOString().split('T')[0];
+  if (load() && S.moveDate) showDash();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
