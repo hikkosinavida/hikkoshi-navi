@@ -274,6 +274,13 @@ p { margin-bottom: 16px; }
   .hero { padding: 32px 16px 24px; }
   .content { padding: 0 16px 60px; }
 }
+.related { margin-top: 48px; }
+.related h2 { font-size: 18px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
+.related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-decoration: none; color: var(--text); transition: box-shadow 0.2s; }
+.related-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.related-card .rc-cat { font-size: 11px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; }
+.related-card .rc-title { font-size: 14px; font-weight: 700; margin-top: 6px; line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -487,13 +494,30 @@ p { margin-bottom: 16px; }
     <a href="/">今すぐ引越ナビを使う</a>
   </div>
 
-  <div class="related" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 40px 0;">
-    <h3 style="border: none; padding: 0; margin: 0 0 12px; font-size: 16px;">関連記事</h3>
-    <ul style="list-style: none; padding: 0;">
-      <li style="margin-bottom: 8px;"><a href="/blog/hikkoshi-hiyou-souba.html" style="color: var(--primary); text-decoration: none; font-size: 15px;">引っ越し費用の相場はいくら？人数・距離・時期別の料金目安【2026年版】</a></li>
-      <li><a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color: var(--primary); text-decoration: none; font-size: 15px;">引っ越しの荷造りのコツ｜効率的な梱包の順番と裏ワザ【完全ガイド】</a></li>
-      <li style="margin-top: 8px;"><a href="/blog/hikkoshi-mitsumori-kotsu.html" style="color: var(--primary); text-decoration: none; font-size: 15px;">引っ越し見積もりのコツ｜業者と交渉して費用を安くする方法</a></li>
-    </ul>
+  <div class="related">
+    <h2>関連記事</h2>
+    <div class="related-grid">
+      <a href="/blog/hikkoshi-hiyou-souba.html" class="related-card">
+        <span class="rc-cat">費用</span>
+        <div class="rc-title">引っ越し費用の相場はいくら？人数・距離・時期別の料金目安</div>
+      </a>
+      <a href="/blog/hikkoshi-nizukuri-kotsu.html" class="related-card">
+        <span class="rc-cat">荷造り</span>
+        <div class="rc-title">引っ越しの荷造りのコツ｜効率的な梱包の順番と裏ワザ</div>
+      </a>
+      <a href="/blog/hikkoshi-mitsumori-kotsu.html" class="related-card">
+        <span class="rc-cat">見積もり</span>
+        <div class="rc-title">引っ越し見積もりのコツ｜業者と交渉して費用を安くする方法</div>
+      </a>
+      <a href="/blog/hikkoshi-hikari-kaisen.html" class="related-card">
+        <span class="rc-cat">ネット回線</span>
+        <div class="rc-title">引っ越し時のインターネット回線おすすめ5選</div>
+      </a>
+      <a href="/blog/hikkoshi-fuyouhin-shobun.html" class="related-card">
+        <span class="rc-cat">不用品処分</span>
+        <div class="rc-title">引っ越し時の不用品処分方法まとめ｜捨てる・売る・譲る</div>
+      </a>
+    </div>
   </div>
 
   <p style="font-size: 14px; color: var(--text-dim); margin-top: 40px;">

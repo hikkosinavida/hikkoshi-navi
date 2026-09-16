@@ -250,6 +250,13 @@ p { margin-bottom: 16px; }
   .content { padding: 0 16px 60px; }
   .save-card .amount { font-size: 26px; }
 }
+.related { margin-top: 48px; }
+.related h2 { font-size: 18px; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
+.related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-decoration: none; color: var(--text); transition: box-shadow 0.2s; }
+.related-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.related-card .rc-cat { font-size: 11px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; }
+.related-card .rc-title { font-size: 14px; font-weight: 700; margin-top: 6px; line-height: 1.4; }
 </style>
 </head>
 <body>
@@ -498,12 +505,29 @@ p { margin-bottom: 16px; }
   </div>
 
   <div class="related">
-    <h3>関連記事</h3>
-    <ul>
-      <li><a href="/blog/hikkoshi-tetsuzuki-list.html">【2026年最新】引っ越し手続き完全一覧｜やることリストを時系列で解説</a></li>
-      <li><a href="/blog/hikkoshi-hiyou-souba.html">引っ越し費用の相場はいくら？人数・距離・時期別の料金目安【2026年版】</a></li>
-      <li><a href="/blog/hikkoshi-nizukuri-kotsu.html">引っ越しの荷造りのコツ｜効率的な梱包の順番と裏ワザ【完全ガイド】</a></li>
-    </ul>
+    <h2>関連記事</h2>
+    <div class="related-grid">
+      <a href="/blog/hikkoshi-tetsuzuki-list.html" class="related-card">
+        <span class="rc-cat">手続き</span>
+        <div class="rc-title">引っ越し手続き完全一覧｜やることリストを時系列で解説</div>
+      </a>
+      <a href="/blog/hikkoshi-hiyou-souba.html" class="related-card">
+        <span class="rc-cat">費用</span>
+        <div class="rc-title">引っ越し費用の相場はいくら？人数・距離・時期別の料金目安</div>
+      </a>
+      <a href="/blog/hikkoshi-nizukuri-kotsu.html" class="related-card">
+        <span class="rc-cat">荷造り</span>
+        <div class="rc-title">引っ越しの荷造りのコツ｜効率的な梱包の順番と裏ワザ</div>
+      </a>
+      <a href="/blog/hikkoshi-hikari-kaisen.html" class="related-card">
+        <span class="rc-cat">ネット回線</span>
+        <div class="rc-title">引っ越し時のインターネット回線おすすめ5選</div>
+      </a>
+      <a href="/blog/hikkoshi-fuyouhin-shobun.html" class="related-card">
+        <span class="rc-cat">不用品処分</span>
+        <div class="rc-title">引っ越し時の不用品処分方法まとめ｜捨てる・売る・譲る</div>
+      </a>
+    </div>
   </div>
 
   <p style="font-size: 14px; color: var(--text-dim); margin-top: 40px;">
