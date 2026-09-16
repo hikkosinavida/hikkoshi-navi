@@ -558,6 +558,98 @@ body {
 .complete-banner p { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
 
 /* ── Responsive ── */
+/* ── Features ── */
+.features {
+  padding: 3rem 1.25rem 2rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.features-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.feature-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+.feature-card h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.feature-card p {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ── Blog Section ── */
+.blog-section {
+  padding: 1rem 1.25rem 3rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.blog-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+.blog-grid {
+  display: grid;
+  gap: 0.6rem;
+}
+.blog-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.blog-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+.blog-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
+.blog-card h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.blog-card p {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
 @media (min-width: 481px) {
   .app { padding: 0 0 2rem; }
   .onboard-form { border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
@@ -595,6 +687,69 @@ body {
         </select>
       </div>
       <button class="btn btn-primary" onclick="start()">リストを作成 →</button>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features" id="features">
+    <div class="features-inner">
+      <h2 class="features-title">引越ナビが選ばれる理由</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>自動でリスト化</h3>
+          <p>引っ越し日・世帯タイプに合わせて、必要な手続きを自動で生成。漏れなく管理できます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <h3>期限つきで安心</h3>
+          <p>各手続きに推奨期限を自動設定。「あと何日」で一目でわかるから、うっかり忘れを防止。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>スマホで簡単管理</h3>
+          <p>PWA対応でスマホのホーム画面に追加OK。通勤中でもサクッとチェックできます。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>完全無料</h3>
+          <p>会員登録もログインも不要。開いてすぐ使える、シンプルな引っ越し管理ツールです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="blog-section" id="blogSection">
+    <div class="blog-inner">
+      <h2 class="blog-title">引っ越しお役立ち記事</h2>
+      <div class="blog-grid">
+        <a href="/blog/hikkoshi-tetsuzuki-list.html" class="blog-card">
+          <span class="blog-tag">手続き</span>
+          <h3>引っ越し手続き完全一覧</h3>
+          <p>やることリストを時系列で解説。1ヶ月前〜引っ越し後まで。</p>
+        </a>
+        <a href="/blog/hikkoshi-hiyou-souba.html" class="blog-card">
+          <span class="blog-tag">費用</span>
+          <h3>引っ越し費用の相場</h3>
+          <p>人数・距離・時期別の料金目安をわかりやすく紹介。</p>
+        </a>
+        <a href="/blog/hikkoshi-nizukuri-kotsu.html" class="blog-card">
+          <span class="blog-tag">荷造り</span>
+          <h3>荷造りのコツ</h3>
+          <p>効率的な梱包の順番と裏ワザで引っ越し準備をラクに。</p>
+        </a>
+        <a href="/blog/hikkoshi-mitsumori-kotsu.html" class="blog-card">
+          <span class="blog-tag">見積もり</span>
+          <h3>見積もりのコツ</h3>
+          <p>業者と交渉して費用を安くする方法を伝授。</p>
+        </a>
+        <a href="/blog/hikkoshi-hikari-kaisen.html" class="blog-card">
+          <span class="blog-tag">ネット回線</span>
+          <h3>光回線おすすめ5選</h3>
+          <p>引っ越し時のネット回線の選び方と手続き方法。</p>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -946,6 +1101,7 @@ function showDash() {
   <a href="/blog/hikkoshi-hiyou-souba.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">費用相場</a>
   <a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">荷造りのコツ</a>
   <a href="/blog/hikkoshi-mitsumori-kotsu.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">見積もりのコツ</a>
+  <a href="/blog/hikkoshi-hikari-kaisen.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">光回線おすすめ</a>
   <br style="margin:8px 0;">
   <a href="/privacy.html" style="color:#9aa0b8;text-decoration:none;margin:0 8px;font-size:12px;">プライバシーポリシー</a>
   <p style="margin-top:8px;">&copy; 2026 引越ナビ</p>
