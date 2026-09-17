@@ -109,6 +109,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-lifeline-tetsuzuki.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-taikyo-hiyou.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-hitorigurashi-junbi.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hikkosi-navi.com/privacy.html</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
