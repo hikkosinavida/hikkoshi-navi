@@ -97,6 +97,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-pet-tetsuzuki.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-kodomo-tenkou.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hikkosi-navi.com/privacy.html</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>yearly</changefreq>
