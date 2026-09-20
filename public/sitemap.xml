@@ -127,6 +127,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-danball-muryou.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-souji-taikyo.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-kuruma-tetsuzuki.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-jiki-yasui.html</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hikkosi-navi.com/privacy.html</loc>
     <lastmod>2026-09-21</lastmod>
     <changefreq>yearly</changefreq>
