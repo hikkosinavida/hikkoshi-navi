@@ -268,6 +268,28 @@ body {
 .feedback-bar .fb-icon { font-size: 1.1rem; }
 .feedback-bar .fb-text { font-size: 0.78rem; font-weight: 500; color: var(--teal); }
 
+.local-section {
+  margin: 1.2rem 1.25rem 0; padding: 1rem 1.1rem;
+  background: var(--bg-card); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.local-title {
+  font-size: 0.85rem; font-weight: 700; margin-bottom: 0.7rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.local-grid { display: grid; gap: 0.5rem; }
+.local-link {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.65rem 0.8rem; border-radius: var(--radius-sm);
+  background: var(--bg-input); text-decoration: none; color: var(--text);
+  transition: background 0.15s;
+}
+.local-link:hover { background: var(--primary-light); }
+.local-link .ll-icon { font-size: 1.1rem; flex-shrink: 0; }
+.local-link .ll-body { min-width: 0; }
+.local-link .ll-name { font-size: 0.8rem; font-weight: 600; }
+.local-link .ll-desc { font-size: 0.68rem; color: var(--text-muted); }
+
 /* ── Move date banner ── */
 .move-banner {
   margin: 0.8rem 1.25rem 0;
@@ -695,8 +717,12 @@ body {
         <select id="inputFrom"><option value="">選択</option></select>
       </div>
       <div class="form-group">
-        <label>引っ越し先</label>
+        <label>引っ越し先（都道府県）</label>
         <select id="inputTo"><option value="">選択</option></select>
+      </div>
+      <div class="form-group">
+        <label>引っ越し先（市区町村）<span style="font-size:0.65rem;color:var(--text-muted);margin-left:0.3rem;">任意</span></label>
+        <input type="text" id="inputCity" placeholder="例：横浜市、世田谷区">
       </div>
       <div class="form-group">
         <label>世帯</label>
@@ -896,6 +922,7 @@ body {
     <div id="complete-area"></div>
     <div id="taskArea"></div>
     <div class="add-section" id="addSection"></div>
+    <div id="localInfo"></div>
     <div class="feedback-bar" onclick="window.open('https://forms.gle/pwKJ6aSr9a4n692p7','_blank');" id="feedbackBar">
       <span class="fb-icon">💬</span>
       <span class="fb-text">ご意見・ご要望をお聞かせください（30秒アンケート）</span>
@@ -916,7 +943,7 @@ const CAT = {
 };
 const CAT_ORDER = ['housing','utility','admin','finance','other'];
 
-let S = { moveDate:'', from:'', to:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
+let S = { moveDate:'', from:'', to:'', toCity:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
 let filter = 'all';
 let addOpen = false;
 
@@ -924,7 +951,7 @@ function save() { try { localStorage.setItem('hk2', JSON.stringify(S)); } catch(
 function load() {
   try {
     const d = localStorage.getItem('hk2');
-    if (d) { S = JSON.parse(d); S.done=S.done||{}; S.dl=S.dl||{}; S.custom=S.custom||[]; S.collapsed=S.collapsed||{}; return true; }
+    if (d) { S = JSON.parse(d); S.done=S.done||{}; S.dl=S.dl||{}; S.custom=S.custom||[]; S.collapsed=S.collapsed||{}; S.toCity=S.toCity||''; return true; }
   } catch(e){} return false;
 }
 
@@ -1146,6 +1173,9 @@ function render() {
 
   // Add task
   renderAddTask();
+
+  // Local info
+  renderLocalInfo();
 }
 
 function renderAddTask() {
@@ -1187,29 +1217,124 @@ function start() {
   const md = document.getElementById('inputDate').value;
   const f = document.getElementById('inputFrom').value;
   const t = document.getElementById('inputTo').value;
+  const c = document.getElementById('inputCity').value.trim();
   const h = document.getElementById('inputHousehold').value;
   if (!md || !f || !t) { alert('すべて入力してください'); return; }
-  S = { moveDate:md, from:f, to:t, hh:h, done:{}, dl:{}, custom:[], collapsed:{} };
+  S = { moveDate:md, from:f, to:t, toCity:c, hh:h, done:{}, dl:{}, custom:[], collapsed:{} };
   save(); showDash();
 }
 
 function resetApp() {
   if (!confirm('すべての進捗をリセットしますか？')) return;
   try { localStorage.removeItem('hk2'); } catch(e){}
-  S = { moveDate:'', from:'', to:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
+  S = { moveDate:'', from:'', to:'', toCity:'', hh:'', done:{}, dl:{}, custom:[], collapsed:{} };
   document.getElementById('dash').hidden = true;
   document.getElementById('onboard').hidden = false;
+  document.getElementById('features').hidden = false;
+  document.getElementById('blogSection').hidden = false;
 }
 
 function showDash() {
   document.getElementById('onboard').hidden = true;
+  document.getElementById('features').hidden = true;
+  document.getElementById('blogSection').hidden = true;
   document.getElementById('dash').hidden = false;
   render();
 }
 
+/* ── Local Info ── */
+const LOCAL_DATA = {
+  '札幌市':{ water:'https://www.city.sapporo.jp/suido/', garbage:'https://www.city.sapporo.jp/seiso/gomi/' },
+  '仙台市':{ water:'https://www.suidou.city.sendai.jp/', garbage:'https://www.city.sendai.jp/haiki-shido/kurashi/machi/genryo/gomi/' },
+  'さいたま市':{ water:'https://www.water-saitama.jp/', garbage:'https://www.city.saitama.jp/001/006/010/' },
+  '千葉市':{ water:'https://www.city.chiba.jp/suidou/', garbage:'https://www.city.chiba.jp/kankyo/junkan/haikibutsu/' },
+  '世田谷区':{ water:'https://www.waterworks.metro.tokyo.lg.jp/', garbage:'https://www.city.setagaya.lg.jp/mokuji/kurashi/004/001/' },
+  '新宿区':{ water:'https://www.waterworks.metro.tokyo.lg.jp/', garbage:'https://www.city.shinjuku.lg.jp/seikatsu/index07.html' },
+  '渋谷区':{ water:'https://www.waterworks.metro.tokyo.lg.jp/', garbage:'https://www.city.shibuya.tokyo.jp/kurashi/gomi/' },
+  '練馬区':{ water:'https://www.waterworks.metro.tokyo.lg.jp/', garbage:'https://www.city.nerima.tokyo.jp/kurashi/gomi/' },
+  '大田区':{ water:'https://www.waterworks.metro.tokyo.lg.jp/', garbage:'https://www.city.ota.tokyo.jp/seikatsu/gomi/' },
+  '横浜市':{ water:'https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/suido-gesui/', garbage:'https://www.city.yokohama.lg.jp/kurashi/sumai-kurashi/gomi-recycle/' },
+  '川崎市':{ water:'https://www.city.kawasaki.jp/800/category/10-4-0-0-0-0-0-0-0-0.html', garbage:'https://www.city.kawasaki.jp/kurashi/category/24-1-0-0-0-0-0-0-0-0.html' },
+  '相模原市':{ water:'https://www.city.sagamihara.kanagawa.jp/kurashi/suido/', garbage:'https://www.city.sagamihara.kanagawa.jp/kurashi/recycle/' },
+  '名古屋市':{ water:'https://www.water.city.nagoya.jp/', garbage:'https://www.city.nagoya.jp/kankyo/page/0000066424.html' },
+  '京都市':{ water:'https://www.city.kyoto.lg.jp/suido/', garbage:'https://www.city.kyoto.lg.jp/kankyo/page/0000001269.html' },
+  '大阪市':{ water:'https://www.city.osaka.lg.jp/suido/', garbage:'https://www.city.osaka.lg.jp/kankyo/page/0000201907.html' },
+  '堺市':{ water:'https://water.city.sakai.lg.jp/', garbage:'https://www.city.sakai.lg.jp/kurashi/gomi/' },
+  '神戸市':{ water:'https://www.city.kobe.lg.jp/a15959/kurashi/water/', garbage:'https://www.city.kobe.lg.jp/a04164/kurashi/recycle/gomi/' },
+  '広島市':{ water:'https://www.water.city.hiroshima.jp/', garbage:'https://www.city.hiroshima.lg.jp/site/gomidashi/' },
+  '北九州市':{ water:'https://www.city.kitakyushu.lg.jp/suidou/', garbage:'https://www.city.kitakyushu.lg.jp/kankyou/recycle/' },
+  '福岡市':{ water:'https://www.city.fukuoka.lg.jp/mizu/', garbage:'https://www.city.fukuoka.lg.jp/kankyo/jigyokeigomi/life/gomi.html' },
+  '熊本市':{ water:'https://www.city.kumamoto.jp/hpkiji/pub/List.aspx?c_id=5&class_set_id=3&class_id=543', garbage:'https://www.city.kumamoto.jp/hpkiji/pub/List.aspx?c_id=5&class_set_id=3&class_id=684' },
+};
+
+const PREF_CAPITAL = {
+  '北海道':'札幌市','青森県':'青森市','岩手県':'盛岡市','宮城県':'仙台市','秋田県':'秋田市',
+  '山形県':'山形市','福島県':'福島市','茨城県':'水戸市','栃木県':'宇都宮市','群馬県':'前橋市',
+  '埼玉県':'さいたま市','千葉県':'千葉市','東京都':'新宿区','神奈川県':'横浜市','新潟県':'新潟市',
+  '富山県':'富山市','石川県':'金沢市','福井県':'福井市','山梨県':'甲府市','長野県':'長野市',
+  '岐阜県':'岐阜市','静岡県':'静岡市','愛知県':'名古屋市','三重県':'津市','滋賀県':'大津市',
+  '京都府':'京都市','大阪府':'大阪市','兵庫県':'神戸市','奈良県':'奈良市','和歌山県':'和歌山市',
+  '鳥取県':'鳥取市','島根県':'松江市','岡山県':'岡山市','広島県':'広島市','山口県':'山口市',
+  '徳島県':'徳島市','香川県':'高松市','愛媛県':'松山市','高知県':'高知市','福岡県':'福岡市',
+  '佐賀県':'佐賀市','長崎県':'長崎市','熊本県':'熊本市','大分県':'大分市','宮崎県':'宮崎市',
+  '鹿児島県':'鹿児島市','沖縄県':'那覇市'
+};
+
+function renderLocalInfo() {
+  const el = document.getElementById('localInfo');
+  const city = S.toCity || PREF_CAPITAL[S.to] || '';
+  const pref = S.to;
+  if (!city && !pref) { el.innerHTML = ''; return; }
+
+  const area = city || pref;
+  const known = LOCAL_DATA[city];
+  const searchBase = 'https://www.google.com/search?q=';
+
+  const waterUrl = known ? known.water : searchBase + encodeURIComponent(area + ' 水道 開始 引っ越し 手続き');
+  const garbageUrl = known ? known.garbage : searchBase + encodeURIComponent(area + ' ゴミの出し方 分別');
+  const hallUrl = searchBase + encodeURIComponent(area + ' 役所 転入届 手続き');
+  const hazardUrl = searchBase + encodeURIComponent(area + ' ハザードマップ');
+
+  el.innerHTML = `
+    <div class="local-section">
+      <div class="local-title">📍 ${area}の地域情報</div>
+      <div class="local-grid">
+        <a href="${waterUrl}" target="_blank" rel="noopener" class="local-link">
+          <span class="ll-icon">🚰</span>
+          <div class="ll-body">
+            <div class="ll-name">水道の開始手続き</div>
+            <div class="ll-desc">${known ? area + 'の水道局サイト' : area + 'の手続き方法を検索'}</div>
+          </div>
+        </a>
+        <a href="${garbageUrl}" target="_blank" rel="noopener" class="local-link">
+          <span class="ll-icon">🗑️</span>
+          <div class="ll-body">
+            <div class="ll-name">ゴミの出し方・分別ルール</div>
+            <div class="ll-desc">${known ? area + 'のゴミ分別ページ' : area + 'の分別ルールを検索'}</div>
+          </div>
+        </a>
+        <a href="${hallUrl}" target="_blank" rel="noopener" class="local-link">
+          <span class="ll-icon">🏛️</span>
+          <div class="ll-body">
+            <div class="ll-name">役所（転入届の手続き）</div>
+            <div class="ll-desc">${area}の転入届・届出窓口を検索</div>
+          </div>
+        </a>
+        <a href="${hazardUrl}" target="_blank" rel="noopener" class="local-link">
+          <span class="ll-icon">⚠️</span>
+          <div class="ll-body">
+            <div class="ll-name">ハザードマップ</div>
+            <div class="ll-desc">${area}の防災情報を確認</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 /* ── Share ── */
 function shareList() {
-  const data = { m: S.moveDate, f: S.from, t: S.to, h: S.hh, d: S.done, dl: S.dl, c: S.custom };
+  const data = { m: S.moveDate, f: S.from, t: S.to, tc: S.toCity, h: S.hh, d: S.done, dl: S.dl, c: S.custom };
   const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
   const url = location.origin + location.pathname + '?s=' + encoded;
   if (navigator.clipboard) {
@@ -1225,7 +1350,7 @@ function loadShared() {
   if (!s) return false;
   try {
     const data = JSON.parse(decodeURIComponent(escape(atob(s))));
-    S = { moveDate: data.m, from: data.f, to: data.t, hh: data.h, done: data.d || {}, dl: data.dl || {}, custom: data.c || [], collapsed: {} };
+    S = { moveDate: data.m, from: data.f, to: data.t, toCity: data.tc || '', hh: data.h, done: data.d || {}, dl: data.dl || {}, custom: data.c || [], collapsed: {} };
     save();
     history.replaceState(null, '', location.pathname);
     return true;
