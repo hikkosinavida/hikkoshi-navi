@@ -248,6 +248,25 @@ body {
 
 .btn-icon:hover { border-color: var(--primary); color: var(--primary); }
 .btn-icon.danger:hover { border-color: var(--red); color: var(--red); }
+.btn-icon.active { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+
+.toast {
+  position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  background: var(--text); color: var(--bg); padding: 0.7rem 1.2rem;
+  border-radius: 10px; font-size: 0.82rem; font-weight: 500;
+  z-index: 999; opacity: 0; transition: opacity 0.3s;
+  box-shadow: var(--shadow-lg); pointer-events: none;
+}
+.toast.show { opacity: 1; }
+
+.feedback-bar {
+  margin: 1rem 1.25rem 0; padding: 0.8rem 1rem; border-radius: var(--radius-sm);
+  background: var(--teal-light); display: flex; align-items: center; gap: 0.6rem;
+  cursor: pointer; transition: opacity 0.15s;
+}
+.feedback-bar:hover { opacity: 0.85; }
+.feedback-bar .fb-icon { font-size: 1.1rem; }
+.feedback-bar .fb-text { font-size: 0.78rem; font-weight: 500; color: var(--teal); }
 
 /* ── Move date banner ── */
 .move-banner {
@@ -858,6 +877,12 @@ body {
           <h1>引越ナビ</h1>
         </div>
         <div class="dash-actions">
+          <button class="btn-icon" onclick="shareList()" title="共有">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+          </button>
+          <button class="btn-icon" onclick="toggleNotif()" id="notifBtn" title="通知">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </button>
           <button class="btn-icon danger" onclick="resetApp()" title="リセット">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
           </button>
@@ -871,8 +896,13 @@ body {
     <div id="complete-area"></div>
     <div id="taskArea"></div>
     <div class="add-section" id="addSection"></div>
+    <div class="feedback-bar" onclick="window.open('https://forms.gle/pwKJ6aSr9a4n692p7','_blank');" id="feedbackBar">
+      <span class="fb-icon">💬</span>
+      <span class="fb-text">ご意見・ご要望をお聞かせください（30秒アンケート）</span>
+    </div>
   </div>
 </div>
+<div class="toast" id="toast"></div>
 
 <script>
 const PREFS = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県'];
@@ -1177,6 +1207,81 @@ function showDash() {
   render();
 }
 
+/* ── Share ── */
+function shareList() {
+  const data = { m: S.moveDate, f: S.from, t: S.to, h: S.hh, d: S.done, dl: S.dl, c: S.custom };
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  const url = location.origin + location.pathname + '?s=' + encoded;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => showToast('共有リンクをコピーしました'));
+  } else {
+    prompt('このURLを共有してください:', url);
+  }
+}
+
+function loadShared() {
+  const params = new URLSearchParams(location.search);
+  const s = params.get('s');
+  if (!s) return false;
+  try {
+    const data = JSON.parse(decodeURIComponent(escape(atob(s))));
+    S = { moveDate: data.m, from: data.f, to: data.t, hh: data.h, done: data.d || {}, dl: data.dl || {}, custom: data.c || [], collapsed: {} };
+    save();
+    history.replaceState(null, '', location.pathname);
+    return true;
+  } catch(e) { return false; }
+}
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ── Notifications ── */
+function toggleNotif() {
+  if (!('Notification' in window)) { showToast('このブラウザは通知に対応していません'); return; }
+  if (Notification.permission === 'granted') {
+    checkDeadlines();
+    showToast('期限間近のタスクを通知しました');
+  } else if (Notification.permission === 'denied') {
+    showToast('通知がブロックされています。ブラウザ設定から許可してください');
+  } else {
+    Notification.requestPermission().then(p => {
+      if (p === 'granted') { checkDeadlines(); showToast('通知を有効にしました'); }
+    });
+  }
+  updateNotifBtn();
+}
+
+function checkDeadlines() {
+  if (Notification.permission !== 'granted') return;
+  const today = todayStr();
+  const tasks = allTasks();
+  const urgent = tasks.filter(t => {
+    if (S.done[t.id]) return false;
+    const diff = daysBetween(today, effDl(t));
+    return diff >= 0 && diff <= 3;
+  });
+  if (urgent.length === 0) {
+    new Notification('引越ナビ', { body: '期限間近のタスクはありません👍', icon: '/icon-192.svg' });
+    return;
+  }
+  urgent.forEach(t => {
+    const diff = daysBetween(today, effDl(t));
+    const label = diff === 0 ? '今日が期限' : `あと${diff}日`;
+    new Notification('引越ナビ — ' + label, { body: t.name, icon: '/icon-192.svg' });
+  });
+}
+
+function updateNotifBtn() {
+  const btn = document.getElementById('notifBtn');
+  if (btn && 'Notification' in window && Notification.permission === 'granted') {
+    btn.classList.add('active');
+  }
+}
+
 // Init
 (function() {
   ['inputFrom','inputTo'].forEach(id => {
@@ -1185,7 +1290,9 @@ function showDash() {
   });
   const d = new Date(); d.setDate(d.getDate() + 30);
   document.getElementById('inputDate').value = d.toISOString().split('T')[0];
-  if (load() && S.moveDate) showDash();
+  if (loadShared() && S.moveDate) { showDash(); }
+  else if (load() && S.moveDate) showDash();
+  updateNotifBtn();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(function(){});
