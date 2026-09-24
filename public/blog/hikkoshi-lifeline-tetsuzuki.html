@@ -30,7 +30,7 @@
 </script>
 
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "電気・ガス・水道の引っ越し手続きはいつまで？", "acceptedAnswer": {"@type": "Answer", "text": "引っ越しの1週間前までに連絡するのが目安です。特にガスの開栓は立会いが必要で、繁忙期は予約が取りにくいため2週間前に連絡すると安心です。"}}, {"@type": "Question", "name": "引っ越しで電力会社を変更するとどのくらい安くなる？", "acceptedAnswer": {"@type": "Answer", "text": "電力自由化により、新電力への乗り換えで年間5,000〜15,000円の節約が可能です。引っ越しは切り替えのベストタイミングです。"}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "電気・ガス・水道の引っ越し手続きはいつまで？", "acceptedAnswer": {"@type": "Answer", "text": "引っ越しの1週間前までに連絡するのが目安です。特にガスの開栓は立会いが必要で、繁忙期は予約が取りにくいため2週間前に連絡すると安心です。"}}, {"@type": "Question", "name": "引っ越しで電力会社を変更するとどのくらい安くなる？", "acceptedAnswer": {"@type": "Answer", "text": "使用量や契約プランによっては、年間数千円〜1万円程度安くなることがあります。ただし燃料費の変動で割高になるプランもあるため、料金シミュレーションで比較してから決めましょう。引っ越しは見直しのよいタイミングです。"}}]}
 </script>
 <style>
 :root {
@@ -278,6 +278,23 @@ p { margin-bottom: 16px; }
 .info-table td {
   background: var(--bg-card);
 }
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.faq-item dt {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+.faq-item dd {
+  font-size: 15px;
+  line-height: 1.8;
+}
 .cta-box {
   background: linear-gradient(135deg, #3366ff, #5588ff);
   color: #fff;
@@ -367,6 +384,7 @@ p { margin-bottom: 16px; }
       <li><a href="#internet">インターネット・電話の手続き</a></li>
       <li><a href="#checklist">ライフライン手続きチェックリスト</a></li>
       <li><a href="#trouble">よくあるトラブルと対処法</a></li>
+      <li><a href="#faq">よくある質問（FAQ）</a></li>
     </ol>
   </nav>
 
@@ -571,6 +589,18 @@ p { margin-bottom: 16px; }
 
   <h3>旧居と新居の料金が二重にかかる</h3>
   <p>停止日と開始日を<strong>引っ越し当日</strong>に揃えることで二重課金を防げます。電気・水道は日割り計算なので、停止が1日遅れても大きな金額にはなりませんが、無駄な出費は避けましょう。</p>
+
+  <h2 id="faq">8. よくある質問（FAQ）</h2>
+
+  <dl class="faq-item">
+    <dt>Q. 電気・ガス・水道の引っ越し手続きはいつまで？</dt>
+    <dd>A. 引っ越しの1週間前までに連絡するのが目安です。特にガスの開栓は立会いが必要で、繁忙期は予約が取りにくいため2週間前に連絡すると安心です。</dd>
+  </dl>
+
+  <dl class="faq-item">
+    <dt>Q. 引っ越しで電力会社を変更するとどのくらい安くなる？</dt>
+    <dd>A. 使用量や契約プランによっては、年間数千円〜1万円程度安くなることがあります。ただし燃料費の変動で割高になるプランもあるため、料金シミュレーションで比較してから決めましょう。引っ越しは見直しのよいタイミングです。</dd>
+  </dl>
 
   <div class="cta-box">
     <h2>ライフラインの手続きも引越ナビで管理</h2>

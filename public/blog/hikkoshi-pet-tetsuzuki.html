@@ -30,7 +30,7 @@
 </script>
 
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "犬の引っ越しで必要な届出は？", "acceptedAnswer": {"@type": "Answer", "text": "引っ越し先の市区町村で犬の登録変更届（転入届と同様に30日以内）が必要です。鑑札を持参して新しい自治体の保健所・動物愛護センターで手続きします。狂犬病予防注射済票も忘れずに。"}}, {"@type": "Question", "name": "猫の引っ越しでストレスを減らすには？", "acceptedAnswer": {"@type": "Answer", "text": "使い慣れたキャリーバッグに普段の匂いがついた毛布を入れ、新居では1部屋だけ開放して徐々に慣れさせましょう。引っ越し当日はキャリーに入れて静かな場所に隔離が基本です。"}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "犬の引っ越しで必要な届出は？", "acceptedAnswer": {"@type": "Answer", "text": "引っ越し後30日以内に、新しい市区町村の担当窓口（保健所など）で犬の登録変更届を出す必要があります。旧住所で交付された鑑札と、狂犬病予防注射済証を持っていきましょう。"}}, {"@type": "Question", "name": "猫の引っ越しでストレスを減らすには？", "acceptedAnswer": {"@type": "Answer", "text": "使い慣れたキャリーバッグに普段の匂いがついた毛布を入れ、新居では1部屋だけ開放して徐々に慣れさせましょう。引っ越し当日はキャリーに入れて静かな場所に隔離が基本です。"}}]}
 </script>
 <style>
 :root {
@@ -278,6 +278,23 @@ p { margin-bottom: 16px; }
 .info-table td {
   background: var(--bg-card);
 }
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.faq-item dt {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+.faq-item dd {
+  font-size: 15px;
+  line-height: 1.8;
+}
 .cta-box {
   background: linear-gradient(135deg, #3366ff, #5588ff);
   color: #fff;
@@ -367,6 +384,7 @@ p { margin-bottom: 16px; }
       <li><a href="#move">ペットの移動方法</a></li>
       <li><a href="#stress">ストレスを減らす引っ越しのコツ</a></li>
       <li><a href="#property">ペット可物件の探し方</a></li>
+      <li><a href="#faq">よくある質問（FAQ）</a></li>
     </ol>
   </nav>
 
@@ -621,6 +639,18 @@ p { margin-bottom: 16px; }
     <li>近隣に<strong>散歩コースや公園</strong>があるか</li>
     <li>近くに<strong>動物病院</strong>があるか</li>
   </ul>
+
+  <h2 id="faq">8. よくある質問（FAQ）</h2>
+
+  <dl class="faq-item">
+    <dt>Q. 犬の引っ越しで必要な届出は？</dt>
+    <dd>A. 引っ越し後30日以内に、新しい市区町村の担当窓口（保健所など）で犬の登録変更届を出す必要があります。旧住所で交付された鑑札と、狂犬病予防注射済証を持っていきましょう。</dd>
+  </dl>
+
+  <dl class="faq-item">
+    <dt>Q. 猫の引っ越しでストレスを減らすには？</dt>
+    <dd>A. 使い慣れたキャリーバッグに普段の匂いがついた毛布を入れ、新居では1部屋だけ開放して徐々に慣れさせましょう。引っ越し当日はキャリーに入れて静かな場所に隔離が基本です。</dd>
+  </dl>
 
   <div class="cta-box">
     <h2>引っ越しの手続き、もう忘れない</h2>
