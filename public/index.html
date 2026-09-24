@@ -50,6 +50,9 @@
   --primary: #3366ff;
   --primary-light: #ebf0ff;
   --primary-hover: #2952cc;
+  --btn-bg: #3366ff;
+  --btn-bg-hover: #2952cc;
+  --link-strong: #2952cc;
   --teal: #0d9488;
   --teal-light: #e6f7f5;
   --amber: #d97706;
@@ -79,6 +82,9 @@
     --primary: #5b8aff;
     --primary-light: rgba(91,138,255,0.12);
     --primary-hover: #7aa0ff;
+    --btn-bg: #3a64d8;
+    --btn-bg-hover: #2f5bd6;
+    --link-strong: #8aabff;
     --teal: #2dd4bf;
     --teal-light: rgba(45,212,191,0.1);
     --amber: #fbbf24;
@@ -105,6 +111,9 @@
   --primary: #5b8aff;
   --primary-light: rgba(91,138,255,0.12);
   --primary-hover: #7aa0ff;
+  --btn-bg: #3a64d8;
+  --btn-bg-hover: #2f5bd6;
+  --link-strong: #8aabff;
   --teal: #2dd4bf;
   --teal-light: rgba(45,212,191,0.1);
   --amber: #fbbf24;
@@ -212,8 +221,8 @@ body {
   display: flex; align-items: center; justify-content: center; gap: 0.4rem;
 }
 
-.btn-primary { background: var(--primary); color: #fff; }
-.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary { background: var(--btn-bg); color: #fff; }
+.btn-primary:hover { background: var(--btn-bg-hover); }
 .btn-primary:active { transform: scale(0.98); }
 
 /* ── Dashboard Header ── */
@@ -412,8 +421,8 @@ body {
 .chip:active { transform: scale(0.96); }
 
 .chip.active {
-  background: var(--primary); color: #fff;
-  border-color: var(--primary);
+  background: var(--btn-bg); color: #fff;
+  border-color: var(--btn-bg);
 }
 
 /* ── Task groups ── */
@@ -588,7 +597,7 @@ body {
   cursor: pointer; margin-top: 0.2rem;
 }
 
-.btn-sm.primary { background: var(--primary); color: #fff; }
+.btn-sm.primary { background: var(--btn-bg); color: #fff; }
 .btn-sm.primary:active { transform: scale(0.98); }
 
 /* ── Completion banner ── */
@@ -678,7 +687,7 @@ body {
   display: inline-block;
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--link-strong);
   background: var(--primary-light);
   padding: 0.1rem 0.5rem;
   border-radius: 4px;
@@ -700,6 +709,7 @@ body {
   .onboard-form { border-radius: var(--radius); margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
   .onboard { min-height: auto; padding-top: 3rem; }
 }
+footer a { display: inline-block; padding: 6px 4px; }
 </style>
 
 <main class="app">
@@ -1442,37 +1452,37 @@ function updateNotifBtn() {
   }
 })();
 </script>
-<footer style="text-align:center;padding:24px 16px;font-size:13px;color:#656e84;border-top:1px solid var(--border);">
-  <a href="/blog/hikkoshi-tetsuzuki-list.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">手続き一覧</a>
-  <a href="/blog/hikkoshi-hiyou-souba.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">費用相場</a>
-  <a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">荷造りのコツ</a>
-  <a href="/blog/hikkoshi-futon-hakobikata.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">布団の運び方</a>
-  <a href="/blog/hikkoshi-mitsumori-kotsu.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">見積もりのコツ</a>
-  <a href="/blog/hikkoshi-hikari-kaisen.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">光回線おすすめ</a>
-  <a href="/blog/hikkoshi-fuyouhin-shobun.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">不用品処分</a>
+<footer style="text-align:center;padding:24px 16px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);">
+  <a href="/blog/hikkoshi-tetsuzuki-list.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">手続き一覧</a>
+  <a href="/blog/hikkoshi-hiyou-souba.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">費用相場</a>
+  <a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">荷造りのコツ</a>
+  <a href="/blog/hikkoshi-futon-hakobikata.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">布団の運び方</a>
+  <a href="/blog/hikkoshi-mitsumori-kotsu.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">見積もりのコツ</a>
+  <a href="/blog/hikkoshi-hikari-kaisen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">光回線おすすめ</a>
+  <a href="/blog/hikkoshi-fuyouhin-shobun.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">不用品処分</a>
   <br style="margin:8px 0;">
-  <a href="/blog/hikkoshi-aisatsu-manner.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">挨拶マナー</a>
-  <a href="/blog/hikkoshi-chintai-erabikata.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">賃貸選び</a>
-  <a href="/blog/hikkoshi-toujitsu-nagare.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">当日の流れ</a>
-  <a href="/blog/hikkoshi-gyousha-erabikata.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">業者選び</a>
-  <a href="/blog/hikkoshi-tanshin-pack.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">単身パック</a>
-  <a href="/blog/hikkoshi-yasuku-suru.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">節約術</a>
-  <a href="/blog/hikkoshi-hojokin-matome.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">補助金</a>
-  <a href="/blog/hikkoshi-shinkyo-checklist.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">入居後</a>
-  <a href="/blog/hikkoshi-jusho-henko.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">住所変更</a>
-  <a href="/blog/hikkoshi-yubin-tenso.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">郵便転送</a>
-  <a href="/blog/hikkoshi-mynumber-jusho.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">マイナンバー住所変更</a>
-  <a href="/blog/hikkoshi-pet-tetsuzuki.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">ペット</a>
-  <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">転校手続き</a>
-  <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">ライフライン</a>
-  <a href="/blog/hikkoshi-taikyo-hiyou.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">退去費用</a>
-  <a href="/blog/hikkoshi-hitorigurashi-junbi.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">一人暮らし</a>
+  <a href="/blog/hikkoshi-aisatsu-manner.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">挨拶マナー</a>
+  <a href="/blog/hikkoshi-chintai-erabikata.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">賃貸選び</a>
+  <a href="/blog/hikkoshi-toujitsu-nagare.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">当日の流れ</a>
+  <a href="/blog/hikkoshi-gyousha-erabikata.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">業者選び</a>
+  <a href="/blog/hikkoshi-tanshin-pack.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">単身パック</a>
+  <a href="/blog/hikkoshi-yasuku-suru.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">節約術</a>
+  <a href="/blog/hikkoshi-hojokin-matome.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">補助金</a>
+  <a href="/blog/hikkoshi-shinkyo-checklist.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">入居後</a>
+  <a href="/blog/hikkoshi-jusho-henko.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">住所変更</a>
+  <a href="/blog/hikkoshi-yubin-tenso.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">郵便転送</a>
+  <a href="/blog/hikkoshi-mynumber-jusho.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">マイナンバー住所変更</a>
+  <a href="/blog/hikkoshi-pet-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ペット</a>
+  <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">転校手続き</a>
+  <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ライフライン</a>
+  <a href="/blog/hikkoshi-taikyo-hiyou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">退去費用</a>
+  <a href="/blog/hikkoshi-hitorigurashi-junbi.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">一人暮らし</a>
   <br style="margin:8px 0;">
   <br style="margin:8px 0;">
-  <a href="/blog/" style="color:var(--primary);text-decoration:none;margin:0 8px;font-size:13px;">記事一覧</a>
-  <a href="/about.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:13px;">運営者情報</a>
-  <a href="/contact.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:13px;">お問い合わせ</a>
-  <a href="/privacy.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:12px;">プライバシーポリシー</a>
+  <a href="/blog/" style="color:var(--link-strong);text-decoration:none;margin:0 8px;font-size:13px;">記事一覧</a>
+  <a href="/about.html" style="color:var(--text-muted);text-decoration:none;margin:0 8px;font-size:13px;">運営者情報</a>
+  <a href="/contact.html" style="color:var(--text-muted);text-decoration:none;margin:0 8px;font-size:13px;">お問い合わせ</a>
+  <a href="/privacy.html" style="color:var(--text-muted);text-decoration:none;margin:0 8px;font-size:12px;">プライバシーポリシー</a>
   <p style="margin-top:8px;">&copy; 2026 引越ナビ</p>
 </footer>
 </body>
