@@ -30,7 +30,10 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.svg">
 <link rel="icon" href="icon-192.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 </head>
 <body>
 
@@ -43,7 +46,7 @@
   --bg-glass: rgba(244, 246, 250, 0.85);
   --text: #1a1e2e;
   --text-dim: #5a6580;
-  --text-muted: #9aa0b8;
+  --text-muted: #656e84;
   --primary: #3366ff;
   --primary-light: #ebf0ff;
   --primary-hover: #2952cc;
@@ -72,7 +75,7 @@
     --bg-glass: rgba(13, 16, 23, 0.88);
     --text: #e4e8f2;
     --text-dim: #8892aa;
-    --text-muted: #525c74;
+    --text-muted: #8892ab;
     --primary: #5b8aff;
     --primary-light: rgba(91,138,255,0.12);
     --primary-hover: #7aa0ff;
@@ -98,7 +101,7 @@
   --bg-glass: rgba(13, 16, 23, 0.88);
   --text: #e4e8f2;
   --text-dim: #8892aa;
-  --text-muted: #525c74;
+  --text-muted: #8892ab;
   --primary: #5b8aff;
   --primary-light: rgba(91,138,255,0.12);
   --primary-hover: #7aa0ff;
@@ -154,7 +157,7 @@ body {
 }
 
 .onboard-top h1 {
-  font-size: 1.75rem; font-weight: 900;
+  font-size: 1.75rem; font-weight: 700;
   letter-spacing: -0.03em; margin-bottom: 0.4rem;
 }
 
@@ -234,7 +237,7 @@ body {
   font-size: 1rem;
 }
 
-.dash-brand h1 { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.02em; }
+.dash-brand h1 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; }
 
 .dash-actions { display: flex; gap: 0.4rem; }
 
@@ -596,7 +599,7 @@ body {
 }
 
 .complete-banner .cb-icon { font-size: 2rem; margin-bottom: 0.3rem; }
-.complete-banner h3 { font-size: 1rem; font-weight: 800; color: var(--green); }
+.complete-banner h3 { font-size: 1rem; font-weight: 700; color: var(--green); }
 .complete-banner p { font-size: 0.78rem; color: var(--text-dim); margin-top: 0.2rem; }
 
 /* ── Responsive ── */
@@ -608,7 +611,7 @@ body {
 }
 .features-title {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 1.2rem;
   letter-spacing: -0.02em;
@@ -648,7 +651,7 @@ body {
 }
 .blog-title {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 700;
   text-align: center;
   margin-bottom: 1.2rem;
   letter-spacing: -0.02em;
@@ -699,7 +702,7 @@ body {
 }
 </style>
 
-<div class="app">
+<main class="app">
   <!-- Onboarding -->
   <div class="onboard" id="onboard">
     <div class="onboard-top">
@@ -709,23 +712,23 @@ body {
     </div>
     <div class="onboard-form">
       <div class="form-group">
-        <label>引っ越し予定日</label>
+        <label for="inputDate">引っ越し予定日</label>
         <input type="date" id="inputDate">
       </div>
       <div class="form-group">
-        <label>今の都道府県</label>
+        <label for="inputFrom">今の都道府県</label>
         <select id="inputFrom"><option value="">選択</option></select>
       </div>
       <div class="form-group">
-        <label>引っ越し先（都道府県）</label>
+        <label for="inputTo">引っ越し先（都道府県）</label>
         <select id="inputTo"><option value="">選択</option></select>
       </div>
       <div class="form-group">
-        <label>引っ越し先（市区町村）<span style="font-size:0.65rem;color:var(--text-muted);margin-left:0.3rem;">任意</span></label>
+        <label for="inputCity">引っ越し先（市区町村）<span style="font-size:0.65rem;color:var(--text-muted);margin-left:0.3rem;">任意</span></label>
         <input type="text" id="inputCity" placeholder="例：横浜市、世田谷区">
       </div>
       <div class="form-group">
-        <label>世帯</label>
+        <label for="inputHousehold">世帯</label>
         <select id="inputHousehold">
           <option value="single">一人暮らし</option>
           <option value="couple">二人暮らし</option>
@@ -928,7 +931,7 @@ body {
       <span class="fb-text">ご意見・ご要望をお聞かせください（30秒アンケート）</span>
     </div>
   </div>
-</div>
+</main>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1028,7 +1031,7 @@ function render() {
     <div class="move-info">
       <div class="route">${S.from}<span class="arrow"> → </span>${S.to}</div>
       <div class="move-date-row">
-        <input type="date" id="editMoveDate" value="${S.moveDate}">
+        <input type="date" id="editMoveDate" value="${S.moveDate}" aria-label="引っ越し日変更">
       </div>
     </div>
   `;
@@ -1138,7 +1141,7 @@ function render() {
               <span class="prio-tag ${pc}">${pl}</span>
             </div>
             <div class="task-row2">
-              <input type="date" class="dl-input" value="${deadline}" data-tid="${t.id}">
+              <input type="date" class="dl-input" value="${deadline}" data-tid="${t.id}" aria-label="${t.name}の期限">
               ${badge}
               <button class="task-expand-btn" data-eid="${t.id}">詳細 ▾</button>
             </div>
@@ -1189,10 +1192,10 @@ function renderAddTask() {
     <div class="add-card">
       <button class="add-toggle" id="addToggle">✕ 閉じる</button>
       <div class="add-form">
-        <input type="text" id="addName" placeholder="タスク名">
+        <input type="text" id="addName" placeholder="タスク名" aria-label="タスク名">
         <div class="add-row">
-          <input type="date" id="addDl">
-          <select id="addCat">
+          <input type="date" id="addDl" aria-label="期限">
+          <select id="addCat" aria-label="カテゴリ">
             ${CAT_ORDER.map(k => `<option value="${k}">${CAT[k].label}</option>`).join('')}
           </select>
         </div>
@@ -1424,7 +1427,7 @@ function updateNotifBtn() {
   }
 })();
 </script>
-<footer style="text-align:center;padding:24px 16px;font-size:13px;color:#9aa0b8;border-top:1px solid var(--border);">
+<footer style="text-align:center;padding:24px 16px;font-size:13px;color:#656e84;border-top:1px solid var(--border);">
   <a href="/blog/hikkoshi-tetsuzuki-list.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">手続き一覧</a>
   <a href="/blog/hikkoshi-hiyou-souba.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">費用相場</a>
   <a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--primary);text-decoration:none;margin:0 8px;">荷造りのコツ</a>
@@ -1449,9 +1452,9 @@ function updateNotifBtn() {
   <br style="margin:8px 0;">
   <br style="margin:8px 0;">
   <a href="/blog/" style="color:var(--primary);text-decoration:none;margin:0 8px;font-size:13px;">記事一覧</a>
-  <a href="/about.html" style="color:#9aa0b8;text-decoration:none;margin:0 8px;font-size:13px;">運営者情報</a>
-  <a href="/contact.html" style="color:#9aa0b8;text-decoration:none;margin:0 8px;font-size:13px;">お問い合わせ</a>
-  <a href="/privacy.html" style="color:#9aa0b8;text-decoration:none;margin:0 8px;font-size:12px;">プライバシーポリシー</a>
+  <a href="/about.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:13px;">運営者情報</a>
+  <a href="/contact.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:13px;">お問い合わせ</a>
+  <a href="/privacy.html" style="color:#656e84;text-decoration:none;margin:0 8px;font-size:12px;">プライバシーポリシー</a>
   <p style="margin-top:8px;">&copy; 2026 引越ナビ</p>
 </footer>
 </body>
