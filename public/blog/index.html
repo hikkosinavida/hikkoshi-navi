@@ -18,21 +18,17 @@
 <meta name="twitter:description" content="引っ越し手続き・費用・荷造り・業者選びなど、カテゴリ別に25本の記事をまとめています。">
 <link rel="canonical" href="https://hikkosi-navi.com/blog/">
 <link rel="icon" href="../icon-192.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap"></noscript>
 <style>
 :root {
   --bg: #f8f9fc;
   --bg-card: #ffffff;
   --text: #1a1e2e;
   --text-dim: #5a6580;
-  --primary: #3366ff;
+  --primary: #2a55e5;
   --primary-light: #ebf0ff;
-  --teal: #0d9488;
+  --teal: #0f766e;
   --teal-light: #e6f7f5;
-  --amber: #d97706;
+  --amber: #b45309;
   --amber-light: #fef3e2;
   --red: #dc2626;
   --red-light: #fde8e8;
@@ -40,7 +36,7 @@
   --radius: 12px;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme="light"]) { --primary: #3366ff; --teal: #0d9488; --amber: #d97706;
     --bg: #0f1117;
     --bg-card: #1a1d2e;
     --text: #e4e8f0;
@@ -52,7 +48,7 @@
     --border: #2a2d3e;
   }
 }
-:root[data-theme="dark"] {
+:root[data-theme="dark"] { --primary: #3366ff; --teal: #0d9488; --amber: #d97706;
   --bg: #0f1117;
   --bg-card: #1a1d2e;
   --text: #e4e8f0;
@@ -65,7 +61,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.8;
@@ -165,6 +161,8 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
   .category-section { padding: 0 16px 20px; }
   .article-card { padding: 16px 18px; }
 }
+.content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
+.content .toc a { text-decoration: none; }
 </style>
 </head>
 <body>
@@ -183,7 +181,7 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
 
 <div class="hero">
   <h1>引っ越し記事一覧</h1>
-  <p>引っ越しに必要な知識をカテゴリ別にまとめました。手続き・費用・荷造り・業者選びなど、全36記事を掲載しています。</p>
+  <p>引っ越しに必要な知識をカテゴリ別にまとめました。手続き・費用・荷造り・業者選びなど、全37記事を掲載しています。</p>
 </div>
 
 <section class="category-section">
@@ -258,6 +256,10 @@ h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
     <a href="/blog/hikkoshi-hojokin-matome.html" class="article-card">
       <div class="card-title">引っ越しの補助金・祝い金まとめ【2026年】もらえるお金の種類と条件</div>
       <div class="card-desc">移住支援金・新婚世帯の補助・会社の祝い金・業者のキャンペーンの条件を解説</div>
+    </a>
+    <a href="/blog/hikkoshi-kaiyaku-tsuchi.html" class="article-card">
+      <div class="card-title">賃貸の解約連絡は何日前まで？契約書の確認ポイントと遅れたときの家賃</div>
+      <div class="card-desc">解約予告期間、民法・借地借家法のルール、連絡が遅れたときの家賃を解説</div>
     </a>
     <a href="/blog/hikkoshi-taikyo-hiyou.html" class="article-card">
       <div class="card-title">賃貸の退去費用ガイド｜原状回復のルールと敷金返還、納得できない請求の対処法</div>
