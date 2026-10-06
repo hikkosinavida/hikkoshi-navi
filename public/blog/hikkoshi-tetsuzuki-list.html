@@ -221,7 +221,7 @@ p { margin-bottom: 16px; }
 }
 .checklist li:last-child { border-bottom: none; }
 .checklist li::before {
-  content: "☐";
+  content: ""; width: 15px; height: 15px; top: 14px; border: 2px solid var(--primary); border-radius: 4px; box-sizing: border-box;
   position: absolute;
   left: 0;
   font-size: 16px;
@@ -322,7 +322,7 @@ p { margin-bottom: 16px; }
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="logo">引越ナビ</a>
+    <a href="/" class="logo" style="display:inline-flex;align-items:center;gap:8px;"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#3366ff"/><path d="M14 31 32 16 50 31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 28v19a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V28" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M25.5 38.5l5 5 8.5-9.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>引越ナビ</a>
     <nav class="global-nav">
       <a href="/blog/">記事一覧</a>
       <a href="/about.html">運営者情報</a>
@@ -373,7 +373,7 @@ p { margin-bottom: 16px; }
   <p>小中学校に通うお子さんがいる場合は、現在の学校に<a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--primary);">転校届</a>を提出し、<strong>在学証明書</strong>と<strong>教科書給与証明書</strong>を受け取ります。</p>
 
   <div class="checklist">
-    <div class="checklist-title">📋 1ヶ月前チェックリスト</div>
+    <div class="checklist-title">1ヶ月前チェックリスト</div>
     <ul>
       <li>賃貸の解約通知を提出</li>
       <li>引っ越し業者の見積もり・予約</li>
@@ -414,7 +414,7 @@ p { margin-bottom: 16px; }
   </div>
 
   <div class="checklist">
-    <div class="checklist-title">📋 2週間前チェックリスト</div>
+    <div class="checklist-title">2週間前チェックリスト</div>
     <ul>
       <li>役所で転出届を提出</li>
       <li>電気の停止・開始手続き</li>
@@ -446,7 +446,7 @@ p { margin-bottom: 16px; }
   <p>旧居のご近所への挨拶を済ませましょう。引っ越し当日はトラックの出入りなどで迷惑をかけることもあるため、事前に一言伝えておくと丁寧です。</p>
 
   <div class="checklist">
-    <div class="checklist-title">📋 1週間前チェックリスト</div>
+    <div class="checklist-title">1週間前チェックリスト</div>
     <ul>
       <li>荷造りを完了させる</li>
       <li>保険の住所変更</li>
@@ -478,7 +478,7 @@ p { margin-bottom: 16px; }
   </ul>
 
   <div class="checklist">
-    <div class="checklist-title">📋 当日チェックリスト</div>
+    <div class="checklist-title">当日チェックリスト</div>
     <ul>
       <li>旧居のブレーカーを落とす</li>
       <li>ガスの閉栓立ち会い</li>
@@ -505,7 +505,7 @@ p { margin-bottom: 16px; }
   <p>車をお持ちの方は、<strong>車検証の住所変更</strong>と<strong>車庫証明</strong>の取得が必要です。管轄の運輸支局で手続きします。詳しくは「<a href="/blog/hikkoshi-kuruma-tetsuzuki.html" style="color:var(--primary);">車の手続き一覧</a>」を参照してください。</p>
 
   <div class="checklist">
-    <div class="checklist-title">📋 引っ越し後チェックリスト</div>
+    <div class="checklist-title">引っ越し後チェックリスト</div>
     <ul>
       <li>転入届の提出（14日以内）</li>
       <li>マイナンバーカードの住所変更</li>

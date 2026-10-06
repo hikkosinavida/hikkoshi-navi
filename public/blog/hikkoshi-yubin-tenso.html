@@ -285,7 +285,7 @@ p { margin-bottom: 16px; }
 }
 .checklist li:last-child { border-bottom: none; }
 .checklist li::before {
-  content: "☐";
+  content: ""; width: 15px; height: 15px; top: 14px; border: 2px solid var(--primary); border-radius: 4px; box-sizing: border-box;
   position: absolute;
   left: 0;
   font-size: 16px;
@@ -299,7 +299,7 @@ p { margin-bottom: 16px; }
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="logo">引越ナビ</a>
+    <a href="/" class="logo" style="display:inline-flex;align-items:center;gap:8px;"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#3366ff"/><path d="M14 31 32 16 50 31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 28v19a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V28" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M25.5 38.5l5 5 8.5-9.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>引越ナビ</a>
     <nav class="global-nav">
       <a href="/blog/">記事一覧</a>
       <a href="/about.html">運営者情報</a>
@@ -468,7 +468,7 @@ p { margin-bottom: 16px; }
   <p>国内の郵便物を海外の住所へ転送することはできません。海外に引っ越す場合は、新住所欄以外を記入した転居届を窓口かポスト投函で出すと、国内での配達を止められます（引っ越す本人からの提出のみ。e転居は使えません）。</p>
 
   <div class="checklist">
-    <div class="checklist-title">📋 転居届とあわせて住所変更したいところ</div>
+    <div class="checklist-title">転居届とあわせて住所変更したいところ</div>
     <ul>
       <li>銀行・クレジットカード（「転送不要」の郵便物が多い）</li>
       <li>ゆうちょ銀行（転居届とは別に住所変更の手続きが必要）</li>

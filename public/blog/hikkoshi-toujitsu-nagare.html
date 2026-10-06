@@ -227,7 +227,7 @@ table tr:last-child td { border-bottom: none; }
 }
 .checklist li:last-child { border-bottom: none; }
 .checklist li::before {
-  content: "☐";
+  content: ""; width: 15px; height: 15px; top: 14px; border: 2px solid var(--primary); border-radius: 4px; box-sizing: border-box;
   position: absolute;
   left: 0;
   font-size: 16px;
@@ -328,7 +328,7 @@ table tr:last-child td { border-bottom: none; }
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="logo">引越ナビ</a>
+    <a href="/" class="logo" style="display:inline-flex;align-items:center;gap:8px;"><svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#3366ff"/><path d="M14 31 32 16 50 31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 28v19a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V28" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M25.5 38.5l5 5 8.5-9.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>引越ナビ</a>
     <nav class="global-nav">
       <a href="/blog/">記事一覧</a>
       <a href="/about.html">運営者情報</a>
@@ -370,7 +370,7 @@ table tr:last-child td { border-bottom: none; }
   <p>引っ越し当日を慌てず迎えるために、前日までに以下の準備を終えておきましょう。</p>
 
   <div class="checklist">
-    <div class="checklist-title">📋 前日までにやることリスト</div>
+    <div class="checklist-title">前日までにやることリスト</div>
     <ul>
       <li>荷造りを完了させる（すぐ使う物以外はすべて梱包）</li>
       <li>冷蔵庫の中身を空にし、電源を抜いて霜取り・水抜きをする</li>
@@ -445,7 +445,7 @@ table tr:last-child td { border-bottom: none; }
 
   <h3>部屋の最終チェック</h3>
   <div class="checklist">
-    <div class="checklist-title">📋 退去前の最終チェック</div>
+    <div class="checklist-title">退去前の最終チェック</div>
     <ul>
       <li>すべての部屋・収納の中に忘れ物がないか確認する</li>
       <li>簡単な<a href="/blog/hikkoshi-souji-taikyo.html" style="color:var(--primary);">退去時の掃除</a>（ホコリ・ゴミの回収）をしておく</li>
@@ -532,7 +532,7 @@ table tr:last-child td { border-bottom: none; }
   <p>当日はトラックに積まず、自分で持ち歩くべきものをまとめておきましょう。</p>
 
   <div class="checklist">
-    <div class="checklist-title">🎒 当日の持ち物リスト</div>
+    <div class="checklist-title">当日の持ち物リスト</div>
     <ul>
       <li>現金・財布・印鑑（引っ越し代金の支払いに現金が必要な場合あり）</li>
       <li>新居・旧居の鍵</li>

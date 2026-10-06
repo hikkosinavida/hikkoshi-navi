@@ -28,7 +28,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"引越ナビ","url":"https://hikkosi-navi.com/","description":"引っ越し日を入力するだけで必要な手続きをすべてリスト化。電気・ガス・水道・役所・郵便局など、やることを自動で管理。","applicationCategory":"LifestyleApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"inLanguage":"ja"}
 </script>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -711,6 +711,13 @@ body {
 }
 footer a { display: inline-block; padding: 6px 4px; }
 
+.brand-mark svg, .icon-sm svg { display: block; }
+.feature-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-light); color: var(--link-strong); display: flex; align-items: center; justify-content: center; font-size: 0; }
+.fb-icon, .ll-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--link-strong); }
+.cb-icon { color: var(--green); display: flex; justify-content: center; }
+.local-title { display: flex; align-items: center; gap: 6px; }
+.local-title svg { color: var(--link-strong); flex-shrink: 0; }
+
 /* ── Example / categories ── */
 .example-section { padding: 1rem 1.25rem 1.5rem; max-width: 480px; margin: 0 auto; }
 .howto { list-style: none; counter-reset: step; display: grid; gap: 0.6rem; margin-bottom: 1.4rem; padding: 0; }
@@ -734,7 +741,7 @@ footer a { display: inline-block; padding: 6px 4px; }
   <!-- Onboarding -->
   <div class="onboard" id="onboard">
     <div class="onboard-top">
-      <div class="brand-mark">🏠</div>
+      <div class="brand-mark"><svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 31 32 16 50 31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 28v19a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V28" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M25.5 38.5l5 5 8.5-9.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h1>引越ナビ</h1>
       <p>引っ越し日を入れるだけ。<br>やること全部、自動でリスト化。</p>
     </div>
@@ -773,22 +780,22 @@ footer a { display: inline-block; padding: 6px 4px; }
       <h2 class="features-title">引越ナビが選ばれる理由</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">📋</div>
+          <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
           <h3>自動でリスト化</h3>
           <p>引っ越し日・世帯タイプに合わせて、必要な手続きを自動で生成。漏れなく管理できます。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⏰</div>
+          <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
           <h3>期限つきで安心</h3>
           <p>各手続きに推奨期限を自動設定。「あと何日」で一目でわかるから、うっかり忘れを防止。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📱</div>
+          <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
           <h3>スマホで簡単管理</h3>
           <p>PWA対応でスマホのホーム画面に追加OK。通勤中でもサクッとチェックできます。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💰</div>
+          <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 7.5 12 12l3.5-4.5M12 12v5M9 12.5h6M9 15h6"/></svg></div>
           <h3>完全無料</h3>
           <p>会員登録もログインも不要。開いてすぐ使える、シンプルな引っ越し管理ツールです。</p>
         </div>
@@ -1065,7 +1072,7 @@ footer a { display: inline-block; padding: 6px 4px; }
     <div class="dash-bar">
       <div class="dash-bar-inner">
         <div class="dash-brand">
-          <div class="icon-sm">🏠</div>
+          <div class="icon-sm"><svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 31 32 16 50 31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 28v19a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V28" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M25.5 38.5l5 5 8.5-9.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h1>引越ナビ</h1>
         </div>
         <div class="dash-actions">
@@ -1090,7 +1097,7 @@ footer a { display: inline-block; padding: 6px 4px; }
     <div class="add-section" id="addSection"></div>
     <div id="localInfo"></div>
     <div class="feedback-bar" onclick="window.open('https://forms.gle/pwKJ6aSr9a4n692p7','_blank');" id="feedbackBar">
-      <span class="fb-icon">💬</span>
+      <span class="fb-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
       <span class="fb-text">ご意見・ご要望をお聞かせください（30秒アンケート）</span>
     </div>
   </div>
@@ -1222,7 +1229,7 @@ function render() {
   // Completion
   const ca = document.getElementById('complete-area');
   if (pct === 100 && total > 0) {
-    ca.innerHTML = `<div class="complete-banner"><div class="cb-icon">🎉</div><h3>すべて完了！</h3><p>お疲れ様でした。素敵な新生活を！</p></div>`;
+    ca.innerHTML = `<div class="complete-banner"><div class="cb-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg></div><h3>すべて完了！</h3><p>お疲れ様でした。素敵な新生活を！</p></div>`;
   } else { ca.innerHTML = ''; }
 
   // Filters
@@ -1466,31 +1473,31 @@ function renderLocalInfo() {
 
   el.innerHTML = `
     <div class="local-section">
-      <div class="local-title">📍 ${area}の地域情報</div>
+      <div class="local-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg> ${area}の地域情報</div>
       <div class="local-grid">
         <a href="${waterUrl}" target="_blank" rel="noopener" class="local-link">
-          <span class="ll-icon">🚰</span>
+          <span class="ll-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.4 6 10.5a6 6 0 0 1-12 0C6 9.4 12 3 12 3z"/></svg></span>
           <div class="ll-body">
             <div class="ll-name">水道の開始手続き</div>
             <div class="ll-desc">${known ? area + 'の水道局サイト' : area + 'の手続き方法を検索'}</div>
           </div>
         </a>
         <a href="${garbageUrl}" target="_blank" rel="noopener" class="local-link">
-          <span class="ll-icon">🗑️</span>
+          <span class="ll-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></span>
           <div class="ll-body">
             <div class="ll-name">ゴミの出し方・分別ルール</div>
             <div class="ll-desc">${known ? area + 'のゴミ分別ページ' : area + 'の分別ルールを検索'}</div>
           </div>
         </a>
         <a href="${hallUrl}" target="_blank" rel="noopener" class="local-link">
-          <span class="ll-icon">🏛️</span>
+          <span class="ll-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg></span>
           <div class="ll-body">
             <div class="ll-name">役所（転入届の手続き）</div>
             <div class="ll-desc">${area}の転入届・届出窓口を検索</div>
           </div>
         </a>
         <a href="${hazardUrl}" target="_blank" rel="noopener" class="local-link">
-          <span class="ll-icon">⚠️</span>
+          <span class="ll-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg></span>
           <div class="ll-body">
             <div class="ll-name">ハザードマップ</div>
             <div class="ll-desc">${area}の防災情報を確認</div>
@@ -1559,7 +1566,7 @@ function checkDeadlines() {
     return diff >= 0 && diff <= 3;
   });
   if (urgent.length === 0) {
-    new Notification('引越ナビ', { body: '期限間近のタスクはありません👍', icon: '/icon-192.svg' });
+    new Notification('引越ナビ', { body: '期限間近のタスクはありません', icon: '/icon-192.svg' });
     return;
   }
   urgent.forEach(t => {
