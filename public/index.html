@@ -710,6 +710,24 @@ body {
   .onboard { min-height: auto; padding-top: 3rem; }
 }
 footer a { display: inline-block; padding: 6px 4px; }
+
+/* ── Example / categories ── */
+.example-section { padding: 1rem 1.25rem 1.5rem; max-width: 480px; margin: 0 auto; }
+.howto { list-style: none; counter-reset: step; display: grid; gap: 0.6rem; margin-bottom: 1.4rem; padding: 0; }
+.howto li { counter-increment: step; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem 0.85rem 3rem; position: relative; }
+.howto li::before { content: counter(step); position: absolute; left: 1rem; top: 0.85rem; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--primary); color: #fff; font-size: 0.75rem; font-weight: 700; display: grid; place-items: center; }
+.howto b { display: block; font-size: 0.88rem; margin-bottom: 0.2rem; }
+.howto span { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; }
+.example-title, .blog-cat { font-size: 0.95rem; font-weight: 700; margin: 1.4rem 0 0.6rem; }
+.example-table-wrap { overflow-x: auto; }
+.example-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.78rem; }
+.example-table th, .example-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; line-height: 1.6; }
+.example-table th { font-size: 0.72rem; color: var(--text-dim); }
+.example-table td:first-child { white-space: nowrap; font-weight: 700; }
+.example-table a { color: var(--link-strong); }
+.example-note, .blog-lead { font-size: 0.72rem; color: var(--text-dim); line-height: 1.6; margin-top: 0.6rem; }
+.blog-lead { text-align: center; margin: -0.6rem 0 0.4rem; }
+.blog-lead a { color: var(--link-strong); }
 </style>
 
 <main class="app">
@@ -778,220 +796,265 @@ footer a { display: inline-block; padding: 6px 4px; }
     </div>
   </div>
 
+  <!-- Example Section -->
+  <div class="example-section" id="exampleSection">
+    <h2 class="blog-title">引越ナビでできること</h2>
+    <ol class="howto">
+      <li><b>引っ越し日と引っ越し先を入れる</b><span>今の都道府県、引っ越し先、世帯（一人暮らし・二人暮らし・ファミリー）を選びます。</span></li>
+      <li><b>やることリストが期限つきでできる</b><span>引っ越し日から逆算して、手続きごとの目安の期限を表示します。</span></li>
+      <li><b>終わったらチェック</b><span>入力した内容はサーバーに送らず、使っている端末（ブラウザ）の中だけに保存されます。</span></li>
+    </ol>
+    <h3 class="example-title">やることリストの例（ほかの都道府県へ引っ越す一人暮らしの場合）</h3>
+    <div class="example-table-wrap">
+      <table class="example-table">
+        <tr><th>いつまでに</th><th>やること</th></tr>
+        <tr><td>30日前</td><td><a href="/blog/hikkoshi-kaiyaku-tsuchi.html">賃貸の解約連絡</a>（契約書の解約予告期間を確認）</td></tr>
+        <tr><td>3週間前</td><td><a href="/blog/hikkoshi-gyousha-erabikata.html">引っ越し業者の手配</a>、<a href="/blog/hikkoshi-hikari-kaisen.html">ネット回線の移転・解約</a></td></tr>
+        <tr><td>2週間前</td><td><a href="/blog/hikkoshi-tenshutsu-tennyu.html">転出届</a>、<a href="/blog/hikkoshi-yubin-tenso.html">郵便の転居届</a></td></tr>
+        <tr><td>1週間前</td><td><a href="/blog/hikkoshi-lifeline-tetsuzuki.html">電気・ガス・水道の停止と開始</a></td></tr>
+        <tr><td>引っ越し後14日以内</td><td><a href="/blog/hikkoshi-tenshutsu-tennyu.html">転入届</a>、<a href="/blog/hikkoshi-mynumber-jusho.html">マイナンバーカードの住所変更</a>、<a href="/blog/hikkoshi-kokuho.html">国民健康保険の加入</a>、銀行・クレジットカードの住所変更</td></tr>
+        <tr><td>速やかに</td><td><a href="/blog/hikkoshi-menkyo-jusho.html">運転免許証の住所変更</a></td></tr>
+      </table>
+    </div>
+    <p class="example-note">※期限は目安です。法律で決まっている期限（転入届の14日以内など）と、早めに済ませたほうがよいものの目安が含まれます。実際の期限は契約書や自治体・事業者の案内で確認してください。</p>
+  </div>
+
   <!-- Blog Section -->
   <div class="blog-section" id="blogSection">
     <div class="blog-inner">
-      <h2 class="blog-title">引っ越しお役立ち記事</h2>
+      <h2 class="blog-title">引っ越しの手続きガイド</h2>
+      <p class="blog-lead">手続きの期限や必要なものを、国・自治体・事業者の公式情報をもとに解説しています。<a href="/blog/">記事一覧を見る</a></p>
+      <h3 class="blog-cat">引っ越し前の手続き</h3>
       <div class="blog-grid">
         <a href="/blog/hikkoshi-tetsuzuki-list.html" class="blog-card">
           <span class="blog-tag">手続き</span>
-          <h3>引っ越し手続き完全一覧</h3>
-          <p>やることリストを時系列で解説。1ヶ月前〜引っ越し後まで。</p>
+          <h3>引っ越し手続き一覧</h3>
+          <p>1か月前から引っ越し後まで、やることを時期ごとに整理。</p>
         </a>
-        <a href="/blog/hikkoshi-hiyou-souba.html" class="blog-card">
-          <span class="blog-tag">費用</span>
-          <h3>引っ越し費用の相場</h3>
-          <p>人数・距離・時期別の料金目安をわかりやすく紹介。</p>
+        <a href="/blog/hikkoshi-kaiyaku-tsuchi.html" class="blog-card">
+          <span class="blog-tag">解約</span>
+          <h3>賃貸の解約連絡は何日前まで？</h3>
+          <p>解約予告期間と、連絡が遅れたときの家賃のルール。</p>
         </a>
-        <a href="/blog/hikkoshi-nizukuri-kotsu.html" class="blog-card">
-          <span class="blog-tag">荷造り</span>
-          <h3>荷造りのコツ</h3>
-          <p>効率的な梱包の順番と裏ワザで引っ越し準備をラクに。</p>
+        <a href="/blog/hikkoshi-tenshutsu-tennyu.html" class="blog-card">
+          <span class="blog-tag">役所</span>
+          <h3>転出届・転入届・転居届の出し方</h3>
+          <p>期限（転入は14日以内）、必要なもの、オンライン手続き。</p>
         </a>
-        <a href="/blog/hikkoshi-sentakuki-mizunuki.html" class="blog-card">
-          <span class="blog-tag">荷造り</span>
-          <h3>洗濯機の水抜きのやり方</h3>
-          <p>いつやる？メーカー公式の手順。</p>
+        <a href="/blog/hikkoshi-juminhyo-utsusanai.html" class="blog-card">
+          <span class="blog-tag">役所</span>
+          <h3>住民票を移さないとどうなる？</h3>
+          <p>過料・選挙・行政サービスへの影響と「正当な理由」。</p>
         </a>
-        <a href="/blog/hikkoshi-futon-hakobikata.html" class="blog-card">
-          <span class="blog-tag">荷造り</span>
-          <h3>布団の運び方</h3>
-          <p>布団袋・圧縮袋の使い方と素材別の注意点。</p>
+        <a href="/blog/hikkoshi-yubin-tenso.html" class="blog-card">
+          <span class="blog-tag">郵便</span>
+          <h3>郵便の転送のやり方</h3>
+          <p>転居届・e転居の手順と、転送が始まるまでの日数。</p>
         </a>
-        <a href="/blog/hikkoshi-mitsumori-kotsu.html" class="blog-card">
-          <span class="blog-tag">見積もり</span>
-          <h3>見積もりのコツ</h3>
-          <p>業者と交渉して費用を安くする方法を伝授。</p>
+        <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">ライフライン</span>
+          <h3>電気・ガス・水道の手続き</h3>
+          <p>停止と開始の申し込み、ガスの開栓の立ち会い。</p>
         </a>
         <a href="/blog/hikkoshi-hikari-kaisen.html" class="blog-card">
           <span class="blog-tag">ネット回線</span>
-          <h3>引っ越しのネット回線の手続き</h3>
-          <p>引っ越し時のネット回線の選び方と手続き方法。</p>
+          <h3>引っ越し時のネット回線の手続き</h3>
+          <p>移転と乗り換えの比べ方、工事の注意点。</p>
         </a>
-        <a href="/blog/hikkoshi-fuyouhin-shobun.html" class="blog-card">
-          <span class="blog-tag">不用品処分</span>
-          <h3>不用品処分方法まとめ</h3>
-          <p>捨てる・売る・譲る別の最適な処分方法を解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-aisatsu-manner.html" class="blog-card">
-          <span class="blog-tag">マナー</span>
-          <h3>引っ越し挨拶のマナー完全ガイド</h3>
-          <p>手土産の選び方・例文・タイミングを解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-chintai-erabikata.html" class="blog-card">
-          <span class="blog-tag">部屋探し</span>
-          <h3>賃貸物件の選び方チェックリスト</h3>
-          <p>失敗しない部屋探しのコツと内見ポイント。</p>
-        </a>
-        <a href="/blog/hikkoshi-toujitsu-nagare.html" class="blog-card">
-          <span class="blog-tag">当日</span>
-          <h3>引っ越し当日の流れ完全ガイド</h3>
-          <p>やること・注意点を時間帯別に解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-gyousha-erabikata.html" class="blog-card">
-          <span class="blog-tag">業者選び</span>
-          <h3>引っ越し業者の選び方</h3>
-          <p>大手vs中小の比較と失敗しないポイント。</p>
-        </a>
-        <a href="/blog/hikkoshi-tanshin-pack.html" class="blog-card">
-          <span class="blog-tag">単身</span>
-          <h3>単身パックとは？料金と運べる荷物</h3>
-          <p>公式情報で比較。選び方も解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-yasuku-suru.html" class="blog-card">
-          <span class="blog-tag">節約</span>
-          <h3>引っ越し費用を安くする裏ワザ10選</h3>
-          <p>データで分かる効果が大きいコツを紹介。</p>
-        </a>
-        <a href="/blog/hikkoshi-ijuu-simulator.html" class="blog-card">
-          <span class="blog-tag">シミュレーター</span>
-          <h3>地方移住のお金シミュレーター</h3>
-          <p>引っ越し費用と移住支援金を差し引きで計算。</p>
-        </a>
-        <a href="/blog/hikkoshi-hojokin-matome.html" class="blog-card">
-          <span class="blog-tag">補助金</span>
-          <h3>引っ越し祝い金・補助金まとめ</h3>
-          <p>自治体の支援制度と申請方法を解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-shinkyo-checklist.html" class="blog-card">
-          <span class="blog-tag">入居後</span>
-          <h3>新居でやること入居後チェックリスト</h3>
-          <p>引っ越し後すぐにやるべき手続きを網羅。</p>
-        </a>
+      </div>
+      <h3 class="blog-cat">引っ越し後の住所変更</h3>
+      <div class="blog-grid">
         <a href="/blog/hikkoshi-jusho-henko.html" class="blog-card">
-          <span class="blog-tag">届出</span>
+          <span class="blog-tag">住所変更</span>
           <h3>住所変更手続きまとめ</h3>
-          <p>届出先一覧と期限・必要書類を解説。</p>
-        </a>
-        <a href="/blog/hikkoshi-yubin-tenso.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
-          <h3>郵便転送のやり方</h3>
-          <p>転居届・e転居の手順と必要なもの。</p>
-        </a>
-        <a href="/blog/hikkoshi-kokuho.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
-          <h3>引っ越しの国民健康保険の手続き</h3>
-          <p>14日以内の届出と保険料の扱い。</p>
+          <p>届出先と期限の一覧、手続きの優先順位。</p>
         </a>
         <a href="/blog/hikkoshi-mynumber-jusho.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
+          <span class="blog-tag">マイナンバー</span>
           <h3>マイナンバーカードの住所変更</h3>
-          <p>手続きの流れと失効する期限。</p>
+          <p>転入届から90日以内。失効する条件と手続きの流れ。</p>
         </a>
-        <a href="/blog/hikkoshi-fukui-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">地域ガイド</span>
-          <h3>福井県の引っ越し手続き</h3>
-          <p>電気ガス・車・雪対策・移住支援金。</p>
+        <a href="/blog/hikkoshi-menkyo-jusho.html" class="blog-card">
+          <span class="blog-tag">免許証</span>
+          <h3>運転免許証の住所変更</h3>
+          <p>期限・場所・必要なもの、マイナ免許証のワンストップ。</p>
         </a>
-        <a href="/blog/hikkoshi-ishikawa-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">地域ガイド</span>
-          <h3>石川県の引っ越し手続き</h3>
-          <p>金沢ナンバー・雪対策・移住支援金。</p>
+        <a href="/blog/hikkoshi-kokuho.html" class="blog-card">
+          <span class="blog-tag">国保</span>
+          <h3>引っ越しの国民健康保険の手続き</h3>
+          <p>14日以内の届出と、月の途中で引っ越したときの保険料。</p>
         </a>
-        <a href="/blog/hikkoshi-toyama-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">地域ガイド</span>
-          <h3>富山県の引っ越し手続き</h3>
-          <p>電気ガス・車・雪対策・移住支援金。</p>
-        </a>
-        <a href="/blog/hikkoshi-shokihiyou-osaeru.html" class="blog-card">
-          <span class="blog-tag">費用・節約</span>
-          <h3>賃貸の初期費用を安くする方法</h3>
-          <p>敷金・礼金・仲介手数料を抑えるコツ。</p>
-        </a>
-        <a href="/blog/hikkoshi-3gatsu-yoyaku.html" class="blog-card">
-          <span class="blog-tag">業者・予約</span>
-          <h3>3月の引っ越しはいつまでに予約する？</h3>
-          <p>繁忙期の予約の目安とキャンセル料。</p>
-        </a>
-        <a href="/blog/hikkoshi-juminhyo-utsusanai.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
-          <h3>住民票を移さないとどうなる？</h3>
-          <p>過料・選挙・行政サービスへの影響。</p>
-        </a>
-        <a href="/blog/hikkoshi-tenshutsu-tennyu.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
-          <h3>転出届・転入届・転居届の出し方</h3>
-          <p>期限・必要なもの・オンライン手続き。</p>
+        <a href="/blog/hikkoshi-kuruma-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">車</span>
+          <h3>引っ越し時の車の手続き</h3>
+          <p>車庫証明・車検証・ナンバープレートの手続き。</p>
         </a>
         <a href="/blog/hikkoshi-kakutei-shinkoku.html" class="blog-card">
           <span class="blog-tag">税金</span>
           <h3>引っ越した年の確定申告はどこに出す？</h3>
-          <p>提出先の税務署と住民税の注意点。</p>
+          <p>提出先の税務署と、住民税の1月1日のルール。</p>
         </a>
-        <a href="/blog/hikkoshi-nenmatsu-12gatsu.html" class="blog-card">
-          <span class="blog-tag">年末の引っ越し</span>
-          <h3>年末・12月の引っ越しで気をつけること</h3>
-          <p>役所の休み・住民税の1月1日・料金データ。</p>
+        <a href="/blog/hikkoshi-shinkyo-checklist.html" class="blog-card">
+          <span class="blog-tag">入居後</span>
+          <h3>新居でやること入居後チェックリスト</h3>
+          <p>入居してすぐ確認すること、済ませたい手続き。</p>
         </a>
-        <a href="/blog/hikkoshi-fuyu-yuki.html" class="blog-card">
-          <span class="blog-tag">冬の引っ越し</span>
-          <h3>冬・雪の日の引っ越しで気をつけること</h3>
-          <p>大雪の延期・雪道・水道の凍結。</p>
+      </div>
+      <h3 class="blog-cat">費用と業者選び</h3>
+      <div class="blog-grid">
+        <a href="/blog/hikkoshi-hiyou-souba.html" class="blog-card">
+          <span class="blog-tag">費用</span>
+          <h3>引っ越し費用の相場</h3>
+          <p>SUUMOの実データで、人数・距離・月別の平均を紹介。</p>
         </a>
-        <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">ペット</span>
-          <h3>ペットの引っ越し手続きガイド</h3>
-          <p>犬・猫・特定動物の届出と移動方法を解説。</p>
+        <a href="/blog/hikkoshi-jiki-yasui.html" class="blog-card">
+          <span class="blog-tag">時期</span>
+          <h3>引っ越しが安い時期はいつ？</h3>
+          <p>月別・時間帯別の料金を実データで比較。</p>
         </a>
-        <a href="/blog/hikkoshi-kodomo-tenkou.html" class="blog-card">
-          <span class="blog-tag">子供</span>
-          <h3>子供の転校手続き完全ガイド</h3>
-          <p>小学校〜高校・保育園の転校届出と必要書類。</p>
+        <a href="/blog/hikkoshi-yasuku-suru.html" class="blog-card">
+          <span class="blog-tag">節約</span>
+          <h3>引っ越し費用を安くする方法</h3>
+          <p>データでわかる、料金に差が出やすいポイント。</p>
         </a>
-        <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">ライフライン</span>
-          <h3>電気・ガス・水道の手続きガイド</h3>
-          <p>停止・開始のタイミングと注意点を解説。</p>
+        <a href="/blog/hikkoshi-gyousha-erabikata.html" class="blog-card">
+          <span class="blog-tag">見積もり</span>
+          <h3>引っ越し業者の選び方と見積もり比較</h3>
+          <p>一括見積もりサイトの違いと、見積書で比べるところ。</p>
         </a>
-        <a href="/blog/hikkoshi-kaiyaku-tsuchi.html" class="blog-card">
-          <span class="blog-tag">解約連絡</span>
-          <h3>賃貸の解約連絡は何日前まで？</h3>
-          <p>解約予告期間と、遅れたときの家賃。</p>
+        <a href="/blog/hikkoshi-mitsumori-kotsu.html" class="blog-card">
+          <span class="blog-tag">見積もり</span>
+          <h3>引っ越し見積もりのコツ</h3>
+          <p>見積もりの取り方と、業者との相談のしかた。</p>
+        </a>
+        <a href="/blog/hikkoshi-tanshin-pack.html" class="blog-card">
+          <span class="blog-tag">単身</span>
+          <h3>単身パックとは？</h3>
+          <p>日通などの公式情報で、料金と運べる荷物を確認。</p>
+        </a>
+        <a href="/blog/hikkoshi-3gatsu-yoyaku.html" class="blog-card">
+          <span class="blog-tag">予約</span>
+          <h3>3月の引っ越しはいつから予約する？</h3>
+          <p>繁忙期の予約の目安とキャンセル料のルール。</p>
+        </a>
+      </div>
+      <h3 class="blog-cat">賃貸・補助金</h3>
+      <div class="blog-grid">
+        <a href="/blog/hikkoshi-chintai-erabikata.html" class="blog-card">
+          <span class="blog-tag">部屋探し</span>
+          <h3>賃貸物件の選び方チェックリスト</h3>
+          <p>内見で確認すること、初期費用と契約の注意点。</p>
+        </a>
+        <a href="/blog/hikkoshi-shokihiyou-osaeru.html" class="blog-card">
+          <span class="blog-tag">初期費用</span>
+          <h3>賃貸の初期費用を安くする方法</h3>
+          <p>敷金・礼金・仲介手数料のルールと抑え方。</p>
         </a>
         <a href="/blog/hikkoshi-taikyo-hiyou.html" class="blog-card">
-          <span class="blog-tag">退去費用</span>
-          <h3>退去費用・敷金返還ガイド</h3>
-          <p>原状回復のルールと対処法を解説。</p>
+          <span class="blog-tag">退去</span>
+          <h3>賃貸の退去費用ガイド</h3>
+          <p>原状回復のルールと敷金の返還（国土交通省のガイドライン）。</p>
+        </a>
+        <a href="/blog/hikkoshi-souji-taikyo.html" class="blog-card">
+          <span class="blog-tag">退去</span>
+          <h3>退去前の掃除ガイド</h3>
+          <p>場所ごとの掃除のしかたと、立ち会いで見られるところ。</p>
+        </a>
+        <a href="/blog/hikkoshi-hojokin-matome.html" class="blog-card">
+          <span class="blog-tag">補助金</span>
+          <h3>引っ越し祝い金・補助金まとめ</h3>
+          <p>自治体の制度の種類と条件、申請先。</p>
+        </a>
+        <a href="/blog/hikkoshi-ijuu-simulator.html" class="blog-card">
+          <span class="blog-tag">ツール</span>
+          <h3>地方移住のお金シミュレーター</h3>
+          <p>引っ越し費用と移住支援金を差し引きで計算（無料）。</p>
+        </a>
+      </div>
+      <h3 class="blog-cat">荷造りと当日</h3>
+      <div class="blog-grid">
+        <a href="/blog/hikkoshi-nizukuri-kotsu.html" class="blog-card">
+          <span class="blog-tag">荷造り</span>
+          <h3>引っ越しの荷造りのコツ</h3>
+          <p>詰める順番とスケジュール、重い物の入れ方。</p>
+        </a>
+        <a href="/blog/hikkoshi-danball-muryou.html" class="blog-card">
+          <span class="blog-tag">ダンボール</span>
+          <h3>ダンボールを無料で手に入れる方法</h3>
+          <p>入手先と、業者のダンボールサービスの確認のしかた。</p>
+        </a>
+        <a href="/blog/hikkoshi-danball-shobun.html" class="blog-card">
+          <span class="blog-tag">ダンボール</span>
+          <h3>引っ越し後のダンボール処分</h3>
+          <p>資源ごみ・業者の回収など、処分のしかた。</p>
+        </a>
+        <a href="/blog/hikkoshi-sentakuki-mizunuki.html" class="blog-card">
+          <span class="blog-tag">家電</span>
+          <h3>洗濯機の水抜きのやり方</h3>
+          <p>パナソニック・日立の公式手順とドラム式の注意点。</p>
+        </a>
+        <a href="/blog/hikkoshi-futon-hakobikata.html" class="blog-card">
+          <span class="blog-tag">布団</span>
+          <h3>引っ越しの布団の運び方</h3>
+          <p>布団袋の入れ方と、圧縮してはいけない素材。</p>
+        </a>
+        <a href="/blog/hikkoshi-fuyouhin-shobun.html" class="blog-card">
+          <span class="blog-tag">処分</span>
+          <h3>不用品処分の方法まとめ</h3>
+          <p>粗大ごみ・リサイクル・回収業者の比べ方。</p>
+        </a>
+        <a href="/blog/hikkoshi-toujitsu-nagare.html" class="blog-card">
+          <span class="blog-tag">当日</span>
+          <h3>引っ越し当日の流れ</h3>
+          <p>前日から搬入後まで、やることを順番に。</p>
+        </a>
+        <a href="/blog/hikkoshi-aisatsu-manner.html" class="blog-card">
+          <span class="blog-tag">マナー</span>
+          <h3>引っ越しの挨拶のマナー</h3>
+          <p>挨拶の範囲・タイミング・手土産。</p>
         </a>
         <a href="/blog/hikkoshi-hitorigurashi-junbi.html" class="blog-card">
           <span class="blog-tag">一人暮らし</span>
           <h3>初めての一人暮らし準備ガイド</h3>
-          <p>必要なもの・費用・手続きを完全網羅。</p>
+          <p>必要な家具家電、生活費の目安（総務省の家計調査）。</p>
         </a>
-        <a href="/blog/hikkoshi-danball-muryou.html" class="blog-card">
-          <span class="blog-tag">梱包</span>
-          <h3>ダンボールを無料で手に入れる方法</h3>
-          <p>必要枚数の目安と入手先を徹底解説。</p>
+      </div>
+      <h3 class="blog-cat">家族・ペット・季節・地域</h3>
+      <div class="blog-grid">
+        <a href="/blog/hikkoshi-kodomo-tenkou.html" class="blog-card">
+          <span class="blog-tag">子ども</span>
+          <h3>子どもの転校手続き</h3>
+          <p>小中学校・高校・保育園の手続きと、区域外就学。</p>
         </a>
-        <a href="/blog/hikkoshi-souji-taikyo.html" class="blog-card">
-          <span class="blog-tag">退去掃除</span>
-          <h3>退去時の掃除ガイド</h3>
-          <p>敷金が返る掃除のコツと場所別手順。</p>
+        <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">ペット</span>
+          <h3>ペットの引っ越し手続き</h3>
+          <p>犬の登録変更（30日以内）と、移動のときの注意。</p>
         </a>
-        <a href="/blog/hikkoshi-menkyo-jusho.html" class="blog-card">
-          <span class="blog-tag">手続き</span>
-          <h3>運転免許証の住所変更</h3>
-          <p>期限・場所・マイナ免許証のワンストップ。</p>
+        <a href="/blog/hikkoshi-nenmatsu-12gatsu.html" class="blog-card">
+          <span class="blog-tag">年末</span>
+          <h3>年末・12月の引っ越しで気をつけること</h3>
+          <p>役所の年末年始休み、住民税の1月1日のルール。</p>
         </a>
-        <a href="/blog/hikkoshi-kuruma-tetsuzuki.html" class="blog-card">
-          <span class="blog-tag">車の手続き</span>
-          <h3>車の手続き完全ガイド</h3>
-          <p>車庫証明・車検証・免許証の住所変更。</p>
+        <a href="/blog/hikkoshi-fuyu-yuki.html" class="blog-card">
+          <span class="blog-tag">冬</span>
+          <h3>冬・雪の日の引っ越しで気をつけること</h3>
+          <p>大雪で延期するとき、雪道、水道の凍結。</p>
         </a>
-        <a href="/blog/hikkoshi-jiki-yasui.html" class="blog-card">
-          <span class="blog-tag">安い時期</span>
-          <h3>引っ越しが安い時期はいつ？</h3>
-          <p>月別の料金相場とベストタイミング。</p>
+        <a href="/blog/hikkoshi-fukui-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">福井</span>
+          <h3>福井県の引っ越し手続き</h3>
+          <p>役所・電気ガス・車・雪対策・移住支援金。</p>
+        </a>
+        <a href="/blog/hikkoshi-ishikawa-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">石川</span>
+          <h3>石川県の引っ越し手続き</h3>
+          <p>金沢ナンバー・雪対策・移住支援金。</p>
+        </a>
+        <a href="/blog/hikkoshi-toyama-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">富山</span>
+          <h3>富山県の引っ越し手続き</h3>
+          <p>電気ガス・車・雪対策・移住支援金。</p>
         </a>
       </div>
     </div>
@@ -1076,33 +1139,33 @@ function baseTasks() {
   const cross = S.from !== S.to;
   const kids = S.hh === 'family';
   const t = [
-    { id:'rental',    cat:'housing', name:'賃貸の解約通知',             dl:dateOffset(m,-30), p:'high', detail:'退去の1〜2ヶ月前までに管理会社・大家に連絡。契約書で解約予告期間を確認。' },
-    { id:'mover',     cat:'housing', name:'引っ越し業者の手配',          dl:dateOffset(m,-21), p:'high', detail:'繁忙期（3〜4月）は2ヶ月前に予約。複数社の相見積もりで費用を比較。', link:'https://hikkoshi.suumo.jp/', linkLabel:'SUUMO見積もり' },
-    { id:'inet',      cat:'utility', name:'ネット回線の移転・解約',       dl:dateOffset(m,-21), p:'high', detail:'工事が必要な場合は3〜4週間かかる。引っ越し先の対応回線も確認。' },
-    { id:'electric',  cat:'utility', name:'電気の停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'現住所の停止と新住所の開始を手続き。Webで完結する電力会社が多い。', link:'https://www.tepco.co.jp/ep/private/moving/', linkLabel:'東京電力(例)' },
-    { id:'gas',       cat:'utility', name:'ガスの停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'開栓には立ち会いが必要。引っ越し当日に開栓予約を入れる。', link:'https://home.tokyo-gas.co.jp/procedure/', linkLabel:'東京ガス(例)' },
-    { id:'water',     cat:'utility', name:'水道の停止・開始',            dl:dateOffset(m,-7),  p:'mid',  detail:'市区町村の水道局にWebまたは電話で手続き。地域で窓口が異なる。' },
-    { id:'post',      cat:'admin',   name:'郵便物の転送届',              dl:dateOffset(m,-14), p:'high', detail:'届出から転送開始まで3〜7営業日。転送は1年間。Webでも届出可能。', link:'https://www.post.japanpost.jp/service/tenkyo/', linkLabel:'e転居' },
-    { id:'move_out',  cat:'admin',   name:'転出届（現住所の役所）',       dl:dateOffset(m,-14), p:'high', detail:'引っ越しの14日前から届出可能。転出証明書を受け取る。マイナンバーカードでオンライン申請可。' },
-    { id:'move_in',   cat:'admin',   name:'転入届（新住所の役所）',       dl:dateOffset(m,14),  p:'high', detail:'引っ越し後14日以内に届出。転出証明書・本人確認書類・マイナンバーカードを持参。' },
-    { id:'mynum',     cat:'admin',   name:'マイナンバーの住所変更',       dl:dateOffset(m,14),  p:'mid',  detail:'転入届と同時に手続き可能。暗証番号が必要。' },
-    { id:'license',   cat:'admin',   name:'運転免許証の住所変更',         dl:dateOffset(m,30),  p:'mid',  detail:'新住所の警察署・免許センターで手続き。新住所の住民票が必要。' },
-    { id:'bank',      cat:'finance', name:'銀行口座の住所変更',           dl:dateOffset(m,14),  p:'mid',  detail:'多くの銀行はアプリ・Webで変更可能。複数口座がある場合は漏れなく。' },
-    { id:'card',      cat:'finance', name:'クレカの住所変更',             dl:dateOffset(m,14),  p:'mid',  detail:'各カード会社のWeb会員ページから変更。' },
-    { id:'insurance', cat:'finance', name:'保険の住所変更',               dl:dateOffset(m,30),  p:'mid',  detail:'生命保険・損害保険・自動車保険など。Webまたは電話で手続き。' },
-    { id:'nhk',       cat:'other',   name:'NHKの住所変更',               dl:dateOffset(m,14),  p:'mid',  detail:'Webで手続き可能。', link:'https://www.nhk.or.jp/css/', linkLabel:'NHK届出' },
-    { id:'ec',        cat:'other',   name:'Amazon等ECの住所変更',         dl:dateOffset(m,-3),  p:'low',  detail:'配送先住所を更新。定期便がある場合は特に早めに。' },
-    { id:'sub',       cat:'other',   name:'サブスクの住所確認',           dl:dateOffset(m,7),   p:'low',  detail:'物品配送系（食材宅配等）は変更必要。動画系は住所不要。' },
-    { id:'greet',     cat:'other',   name:'近隣への挨拶品準備',           dl:dateOffset(m,-3),  p:'low',  detail:'500〜1,000円の日用品（タオル、洗剤等）が定番。のし紙は「御挨拶」。' },
+    { id:'rental',    cat:'housing', name:'賃貸の解約通知',             dl:dateOffset(m,-30), p:'high', detail:'契約書で解約予告期間（国土交通省の標準契約書では30日前。1か月前・2か月前の契約もある）と連絡のしかたを確認し、管理会社・大家さんに連絡する。', guide:'/blog/hikkoshi-kaiyaku-tsuchi.html' },
+    { id:'mover',     cat:'housing', name:'引っ越し業者の手配',          dl:dateOffset(m,-21), p:'high', detail:'日にちが決まったら、複数の業者に見積もりを頼んで比べる。3月中旬〜4月上旬は特に混むので早めに。', guide:'/blog/hikkoshi-gyousha-erabikata.html' },
+    { id:'inet',      cat:'utility', name:'ネット回線の移転・解約',       dl:dateOffset(m,-21), p:'high', detail:'移転か乗り換えかを決めて早めに申し込む。工事が必要な場合は、開通まで日数がかかることがある。', guide:'/blog/hikkoshi-hikari-kaisen.html' },
+    { id:'electric',  cat:'utility', name:'電気の停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'今の住所の停止と、新しい住所の開始を申し込む。Webで手続きできる会社も多い。', guide:'/blog/hikkoshi-lifeline-tetsuzuki.html' },
+    { id:'gas',       cat:'utility', name:'ガスの停止・開始',            dl:dateOffset(m,-7),  p:'high', detail:'開栓には立ち会いが必要なことが多いので、早めに日時を予約する。', guide:'/blog/hikkoshi-lifeline-tetsuzuki.html' },
+    { id:'water',     cat:'utility', name:'水道の停止・開始',            dl:dateOffset(m,-7),  p:'mid',  detail:'水道局などにWebや電話で申し込む。窓口は地域によって違う。', guide:'/blog/hikkoshi-lifeline-tetsuzuki.html' },
+    { id:'post',      cat:'admin',   name:'郵便物の転送届',              dl:dateOffset(m,-14), p:'high', detail:'届け出てから転送の登録まで3〜7営業日。転送期間は届け出た日から1年間。e転居でも届け出られる。', link:'https://www.post.japanpost.jp/service/tenkyo/', linkLabel:'e転居', guide:'/blog/hikkoshi-yubin-tenso.html' },
+    { id:'move_out',  cat:'admin',   name:'転出届（現住所の役所）',       dl:dateOffset(m,-14), p:'high', detail:'引っ越す前に、今の市区町村に届け出る（いつから出せるかは自治体によって違う）。マイナンバーカードがあれば、マイナポータルからオンラインでも出せる。', guide:'/blog/hikkoshi-tenshutsu-tennyu.html' },
+    { id:'move_in',   cat:'admin',   name:'転入届（新住所の役所）',       dl:dateOffset(m,14),  p:'high', detail:'引っ越した日から14日以内に、新しい市区町村に届け出る（住民基本台帳法）。', guide:'/blog/hikkoshi-tenshutsu-tennyu.html' },
+    { id:'mynum',     cat:'admin',   name:'マイナンバーの住所変更',       dl:dateOffset(m,14),  p:'mid',  detail:'転入届と同じ日に手続きすると確実。転入届から90日以内にしないとカードが失効する。暗証番号が必要。', guide:'/blog/hikkoshi-mynumber-jusho.html' },
+    { id:'license',   cat:'admin',   name:'運転免許証の住所変更',         dl:dateOffset(m,30),  p:'mid',  detail:'道路交通法で「速やかに」届け出る。新しい住所の都道府県の警察署・運転免許センターなどで手続きする。マイナ免許証のみでワンストップの利用手続をしている人は、警察での届出は不要。', guide:'/blog/hikkoshi-menkyo-jusho.html' },
+    { id:'bank',      cat:'finance', name:'銀行口座の住所変更',           dl:dateOffset(m,14),  p:'mid',  detail:'アプリやWebで変更できる銀行も多い。口座が複数ある場合は漏れなく。', guide:'/blog/hikkoshi-jusho-henko.html' },
+    { id:'card',      cat:'finance', name:'クレカの住所変更',             dl:dateOffset(m,14),  p:'mid',  detail:'各カード会社の会員ページなどから変更する。', guide:'/blog/hikkoshi-jusho-henko.html' },
+    { id:'insurance', cat:'finance', name:'保険の住所変更',               dl:dateOffset(m,30),  p:'mid',  detail:'生命保険・損害保険・自動車保険など。Webや電話で手続きする。', guide:'/blog/hikkoshi-jusho-henko.html' },
+    { id:'nhk',       cat:'other',   name:'NHKの住所変更',               dl:dateOffset(m,14),  p:'mid',  detail:'Webで手続きできる。', link:'https://www.nhk.or.jp/css/', linkLabel:'NHK届出' },
+    { id:'ec',        cat:'other',   name:'Amazon等ECの住所変更',         dl:dateOffset(m,-3),  p:'low',  detail:'配送先の住所を変える。定期便がある場合は特に早めに。' },
+    { id:'sub',       cat:'other',   name:'サブスクの住所確認',           dl:dateOffset(m,7),   p:'low',  detail:'食材の宅配など、物が届くサービスは住所の変更が必要。' },
+    { id:'greet',     cat:'other',   name:'近隣への挨拶品準備',           dl:dateOffset(m,-3),  p:'low',  detail:'挨拶する範囲と手土産を決める（500〜1,000円程度の消耗品がよく言われる目安）。', guide:'/blog/hikkoshi-aisatsu-manner.html' },
   ];
   if (cross) {
-    t.push({ id:'kokuho', cat:'admin', name:'国民健康保険の切替', dl:dateOffset(m,14), p:'high', detail:'旧住所で資格喪失届、新住所で加入届。会社の社保加入者は不要。' });
-    t.push({ id:'nenkin', cat:'admin', name:'国民年金の住所変更', dl:dateOffset(m,14), p:'mid',  detail:'マイナンバーと基礎年金番号が紐付いている場合は届出不要のことも。' });
+    t.push({ id:'kokuho', cat:'admin', name:'国民健康保険の切替', dl:dateOffset(m,14), p:'high', detail:'前の市区町村で脱退、新しい市区町村で加入する（14日以内）。会社の健康保険に入っている人は不要。', guide:'/blog/hikkoshi-kokuho.html' });
+    t.push({ id:'nenkin', cat:'admin', name:'国民年金の住所変更', dl:dateOffset(m,14), p:'mid',  detail:'日本年金機構によると、マイナンバーと基礎年金番号が結びついていれば、原則として届出は不要。結びついているかは「ねんきんネット」などで確認できる。' });
   }
   if (kids) {
-    t.push({ id:'school',  cat:'admin', name:'学校の転校手続き',       dl:dateOffset(m,-14), p:'high', detail:'在学証明書・教科書給与証明書を取得し、新住所の教育委員会で転入手続き。' });
-    t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'転出先で15日以内に認定請求書を提出。遅れると受給できない月が発生。' });
-    t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'旧住所で喪失届、新住所で新規申請。助成内容は自治体で異なる。' });
+    t.push({ id:'school',  cat:'admin', name:'学校の転校手続き',       dl:dateOffset(m,-14), p:'high', detail:'今の学校に連絡して在学証明書などを受け取り、新しい市区町村の教育委員会で手続きする（公立小中学校の場合）。', guide:'/blog/hikkoshi-kodomo-tenkou.html' });
+    t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'転出予定日の次の日から15日以内に、新しい市区町村で申請する（こども家庭庁）。遅れると、遅れた月の分を受け取れなくなることがある。' });
+    t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'前の市区町村と新しい市区町村で手続きする。助成の内容は自治体によって違う。' });
   }
   return t;
 }
@@ -1248,6 +1311,7 @@ function render() {
             <div class="task-detail-body" id="td-${t.id}" hidden>
               ${t.detail}
               ${t.link ? `<br><a href="${t.link}" target="_blank" rel="noopener">${t.linkLabel || '手続きサイト'} →</a>` : ''}
+              ${t.guide ? `<br><a href="${t.guide}">くわしい解説を読む →</a>` : ''}
             </div>
           </div>
         </div>
@@ -1335,12 +1399,14 @@ function resetApp() {
   document.getElementById('onboard').hidden = false;
   document.getElementById('features').hidden = false;
   document.getElementById('blogSection').hidden = false;
+  document.getElementById('exampleSection').hidden = false;
 }
 
 function showDash() {
   document.getElementById('onboard').hidden = true;
   document.getElementById('features').hidden = true;
   document.getElementById('blogSection').hidden = true;
+  document.getElementById('exampleSection').hidden = true;
   document.getElementById('dash').hidden = false;
   render();
 }
@@ -1533,7 +1599,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">荷造りのコツ</a>
   <a href="/blog/hikkoshi-futon-hakobikata.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">布団の運び方</a>
   <a href="/blog/hikkoshi-mitsumori-kotsu.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">見積もりのコツ</a>
-  <a href="/blog/hikkoshi-hikari-kaisen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">光回線おすすめ</a>
+  <a href="/blog/hikkoshi-hikari-kaisen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ネット回線の手続き</a>
   <a href="/blog/hikkoshi-fuyouhin-shobun.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">不用品処分</a>
   <br style="margin:8px 0;">
   <a href="/blog/hikkoshi-aisatsu-manner.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">挨拶マナー</a>
