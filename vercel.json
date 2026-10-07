@@ -1,21 +1,3 @@
 {
-  "outputDirectory": "public",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "temporary-rapid-zenith-g5qjix2.vercel.app"
-        }
-      ],
-      "destination": "https://hikkosi-navi.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/__redirect-test",
-      "destination": "/",
-      "permanent": false
-    }
-  ]
+  "outputDirectory": "public"
 }
