@@ -879,7 +879,7 @@ footer a { display: inline-block; padding: 6px 4px; }
         <a href="/blog/hikkoshi-mynumber-jusho.html" class="blog-card">
           <span class="blog-tag">マイナンバー</span>
           <h3>マイナンバーカードの住所変更</h3>
-          <p>転入届から90日以内。失効する条件と手続きの流れ。</p>
+          <p>14日以内の届出と、90日で失効する条件。手続きの流れ。</p>
         </a>
         <a href="/blog/hikkoshi-menkyo-jusho.html" class="blog-card">
           <span class="blog-tag">免許証</span>
@@ -1038,6 +1038,11 @@ footer a { display: inline-block; padding: 6px 4px; }
       </div>
       <h3 class="blog-cat">家族・ペット・季節・地域</h3>
       <div class="blog-grid">
+        <a href="/blog/hikkoshi-kekkon-tetsuzuki.html" class="blog-card">
+          <span class="blog-tag">結婚</span>
+          <h3>結婚と引っ越しの手続きの順番</h3>
+          <p>婚姻届・転入届と、名字が変わる人の手続き一覧。</p>
+        </a>
         <a href="/blog/hikkoshi-kodomo-tenkou.html" class="blog-card">
           <span class="blog-tag">子ども</span>
           <h3>子どもの転校手続き</h3>
@@ -1165,7 +1170,7 @@ function baseTasks() {
     { id:'post',      cat:'admin',   name:'郵便物の転送届',              dl:dateOffset(m,-14), p:'high', detail:'届け出てから転送の登録まで3〜7営業日。転送期間は届け出た日から1年間。e転居でも届け出られる。', link:'https://www.post.japanpost.jp/service/tenkyo/', linkLabel:'e転居', guide:'/blog/hikkoshi-yubin-tenso.html' },
     { id:'move_out',  cat:'admin',   name:'転出届（現住所の役所）',       dl:dateOffset(m,-14), p:'high', detail:'引っ越す前に、今の市区町村に届け出る（いつから出せるかは自治体によって違う）。マイナンバーカードがあれば、マイナポータルからオンラインでも出せる。', guide:'/blog/hikkoshi-tenshutsu-tennyu.html' },
     { id:'move_in',   cat:'admin',   name:'転入届（新住所の役所）',       dl:dateOffset(m,14),  p:'high', detail:'引っ越した日から14日以内に、新しい市区町村に届け出る（住民基本台帳法）。', guide:'/blog/hikkoshi-tenshutsu-tennyu.html' },
-    { id:'mynum',     cat:'admin',   name:'マイナンバーの住所変更',       dl:dateOffset(m,14),  p:'mid',  detail:'転入届と同じ日に手続きすると確実。転入届から90日以内にしないとカードが失効する。暗証番号が必要。', guide:'/blog/hikkoshi-mynumber-jusho.html' },
+    { id:'mynum',     cat:'admin',   name:'マイナンバーの住所変更',       dl:dateOffset(m,14),  p:'mid',  detail:'記載内容が変わったら14日以内に届け出る（マイナンバーカード総合サイト）。転入届から90日を過ぎるとカードが失効するので、転入届と同じ日に手続きすると確実。暗証番号が必要。', guide:'/blog/hikkoshi-mynumber-jusho.html' },
     { id:'license',   cat:'admin',   name:'運転免許証の住所変更',         dl:dateOffset(m,30),  p:'mid',  detail:'道路交通法で「速やかに」届け出る。新しい住所の都道府県の警察署・運転免許センターなどで手続きする。マイナ免許証のみでワンストップの利用手続をしている人は、警察での届出は不要。', guide:'/blog/hikkoshi-menkyo-jusho.html' },
     { id:'bank',      cat:'finance', name:'銀行口座の住所変更',           dl:dateOffset(m,14),  p:'mid',  detail:'アプリやWebで変更できる銀行も多い。口座が複数ある場合は漏れなく。', guide:'/blog/hikkoshi-jusho-henko.html' },
     { id:'card',      cat:'finance', name:'クレカの住所変更',             dl:dateOffset(m,14),  p:'mid',  detail:'各カード会社の会員ページなどから変更する。', guide:'/blog/hikkoshi-jusho-henko.html' },
@@ -1647,6 +1652,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-sentakuki-mizunuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">洗濯機の水抜き</a>
   <a href="/blog/hikkoshi-inkan-touroku.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">印鑑登録</a>
   <a href="/blog/hikkoshi-shako-shomei.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">車庫証明</a>
+  <a href="/blog/hikkoshi-kekkon-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">結婚と引っ越し</a>
   <a href="/blog/hikkoshi-pet-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ペット</a>
   <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">転校手続き</a>
   <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ライフライン</a>
