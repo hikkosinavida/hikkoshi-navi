@@ -390,6 +390,20 @@ body {
   display: flex; gap: 1rem; margin-top: 0.6rem;
 }
 
+.cal-row {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.75rem;
+  margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border);
+}
+.cal-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.5rem 0.85rem; border-radius: 10px;
+  border: 1px solid var(--primary); background: var(--primary-light); color: var(--primary);
+  font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.15s;
+}
+.cal-btn:hover { background: var(--primary); color: #fff; }
+.cal-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.cal-note { font-size: 0.7rem; color: var(--text-muted); line-height: 1.5; flex: 1 1 14rem; }
+
 .progress-stats .ps {
   font-size: 0.72rem; color: var(--text-muted); font-weight: 500;
 }
@@ -810,6 +824,7 @@ footer a { display: inline-block; padding: 6px 4px; }
       <li><b>引っ越し日と引っ越し先を入れる</b><span>今の都道府県、引っ越し先、世帯（一人暮らし・二人暮らし・ファミリー）を選びます。</span></li>
       <li><b>やることリストが期限つきでできる</b><span>引っ越し日から逆算して、手続きごとの目安の期限を表示します。</span></li>
       <li><b>終わったらチェック</b><span>入力した内容はサーバーに送らず、使っている端末（ブラウザ）の中だけに保存されます。</span></li>
+      <li><b>期限をカレンダーに入れる</b><span>まだ終わっていない手続きの期限を、iPhone・MacのカレンダーやGoogleカレンダーにまとめて追加できます。</span></li>
     </ol>
     <h3 class="example-title">やることリストの例（ほかの都道府県へ引っ越す一人暮らしの場合）</h3>
     <div class="example-table-wrap">
@@ -1239,6 +1254,13 @@ function render() {
       <span class="ps">残り <b>${total - done}</b></span>
       <span class="ps">全 <b>${total}</b></span>
     </div>
+    <div class="cal-row">
+      <button type="button" class="cal-btn" onclick="exportCalendar()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M12 13v5M9.5 15.5h5"/></svg>
+        期限をカレンダーに追加
+      </button>
+      <span class="cal-note">まだ終わっていない手続きの期限を、カレンダーにまとめて入れられます。iPhone・Macはそのまま追加でき、前日9時に通知が来ます。Googleカレンダーはパソコンの「設定 → インポート」から読み込めます。</span>
+    </div>
   `;
 
   // Completion
@@ -1521,6 +1543,51 @@ function renderLocalInfo() {
       </div>
     </div>
   `;
+}
+
+/* ── Calendar (.ics) ── */
+function icsEsc(v) { return String(v).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n'); }
+function icsFold(line) {
+  const enc = new TextEncoder(), out = [];
+  let cur = '', bytes = 0;
+  for (const ch of line) {
+    const b = enc.encode(ch).length;
+    if (bytes + b > 73) { out.push(cur); cur = ' ' + ch; bytes = 1 + b; }
+    else { cur += ch; bytes += b; }
+  }
+  out.push(cur);
+  return out.join('\r\n');
+}
+function exportCalendar() {
+  const today = todayStr();
+  const ymd = d => d.replace(/-/g, '');
+  const tasks = allTasks().filter(t => !S.done[t.id] && daysBetween(today, effDl(t)) >= 0);
+  const moveAhead = daysBetween(today, S.moveDate) >= 0;
+  if (!tasks.length && !moveAhead) { showToast('これから期限が来る手続きはありません'); return; }
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const L = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//hikkosi-navi.com//hikkoshi-navi//JA','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:引越ナビ'];
+  const ev = (uid, date, summary, desc, alarm) => {
+    L.push('BEGIN:VEVENT', 'UID:' + uid + '-' + ymd(S.moveDate) + '@hikkosi-navi.com', 'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + ymd(date), 'DTEND;VALUE=DATE:' + ymd(dateOffset(date, 1)),
+      'SUMMARY:' + icsEsc(summary), 'DESCRIPTION:' + icsEsc(desc), 'TRANSP:TRANSPARENT');
+    if (alarm) L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEsc(summary), 'TRIGGER:-PT15H', 'END:VALARM');
+    L.push('END:VEVENT');
+  };
+  if (moveAhead) ev('move', S.moveDate, '引っ越し日', S.from + ' → ' + S.to + '\nやることリスト: https://hikkosi-navi.com/', false);
+  tasks.forEach(t => {
+    const desc = [t.detail && t.detail !== 'カスタムタスク' ? t.detail : '',
+      t.guide ? 'くわしい解説: https://hikkosi-navi.com' + t.guide : '',
+      'やることリスト: https://hikkosi-navi.com/'].filter(Boolean).join('\n');
+    ev(t.id, effDl(t), '期限：' + t.name, desc, true);
+  });
+  L.push('END:VCALENDAR');
+  const blob = new Blob([L.map(icsFold).join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'hikkoshi-navi.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+  showToast(tasks.length + '件の期限をカレンダー用のファイルにしました');
 }
 
 /* ── Share ── */
