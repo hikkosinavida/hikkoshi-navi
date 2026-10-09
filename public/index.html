@@ -1165,6 +1165,8 @@ let S = { moveDate:'', from:'', to:'', toCity:'', hh:'', done:{}, dl:{}, custom:
 let filter = 'all';
 let addOpen = false;
 
+function track(name, params) { try { if (window.gtag) gtag('event', name, params || {}); } catch(e){} }
+
 function save() { try { localStorage.setItem('hk2', JSON.stringify(S)); } catch(e){} }
 function load() {
   try {
@@ -1377,7 +1379,9 @@ function render() {
       `;
 
       card.querySelector('.checkbox').addEventListener('click', () => {
-        S.done[t.id] = !S.done[t.id]; save(); render();
+        S.done[t.id] = !S.done[t.id];
+        if (S.done[t.id]) track('task_done', { task_id: t.id });
+        save(); render();
       });
 
       card.querySelector('.dl-input').addEventListener('change', function() {
@@ -1447,6 +1451,7 @@ function start() {
   const h = document.getElementById('inputHousehold').value;
   if (!md || !f || !t) { alert('すべて入力してください'); return; }
   S = { moveDate:md, from:f, to:t, toCity:c, hh:h, done:{}, dl:{}, custom:[], collapsed:{} };
+  track('list_create', { household: h, cross_pref: f !== t ? 'yes' : 'no' });
   save(); showDash();
 }
 
@@ -1560,6 +1565,12 @@ function renderLocalInfo() {
   `;
 }
 
+/* ── Guide link clicks ── */
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('#taskArea a[href^="/blog/"]');
+  if (a) track('guide_click', { link_url: a.getAttribute('href') });
+});
+
 /* ── Calendar (.ics) ── */
 function icsEsc(v) { return String(v).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n'); }
 function icsFold(line) {
@@ -1602,11 +1613,13 @@ function exportCalendar() {
   a.download = 'hikkoshi-navi.ics';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+  track('calendar_export', { tasks: tasks.length });
   showToast(tasks.length + '件の期限をカレンダー用のファイルにしました');
 }
 
 /* ── Share ── */
 function shareList() {
+  track('list_share');
   const data = { m: S.moveDate, f: S.from, t: S.to, tc: S.toCity, h: S.hh, d: S.done, dl: S.dl, c: S.custom };
   const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
   const url = location.origin + location.pathname + '?s=' + encoded;
@@ -1647,7 +1660,7 @@ function toggleNotif() {
     showToast('通知がブロックされています。ブラウザ設定から許可してください');
   } else {
     Notification.requestPermission().then(p => {
-      if (p === 'granted') { checkDeadlines(); showToast('通知を有効にしました'); }
+      if (p === 'granted') { track('notification_on'); checkDeadlines(); showToast('通知を有効にしました'); }
     });
   }
   updateNotifBtn();

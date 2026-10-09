@@ -358,7 +358,7 @@ p { margin-bottom: 16px; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">無料で使う</a>
+    <a href="/" class="cta-btn" data-cta="header">無料で使う</a>
   </div>
 </header>
 
@@ -793,7 +793,7 @@ p { margin-bottom: 16px; }
 
 <footer class="footer">
   <div class="footer-nav">
-    <a href="/">ホーム</a>
+    <a href="/" data-cta="bottom">ホーム</a>
     <a href="/blog/">記事一覧</a>
     <a href="/about.html">運営者情報</a>
     <a href="/contact.html">お問い合わせ</a>
@@ -803,5 +803,6 @@ p { margin-bottom: 16px; }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

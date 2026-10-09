@@ -334,7 +334,7 @@ p { margin-bottom: 16px; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">無料で使う</a>
+    <a href="/" class="cta-btn" data-cta="header">無料で使う</a>
   </div>
 </header>
 
@@ -519,7 +519,7 @@ p { margin-bottom: 16px; }
   <div class="cta-box">
     <h2>移住の引っ越しも、やることを期限つきで管理</h2>
     <p>転出届・転入届から電気ガス水道・車の手続きまで、引っ越し日を入れるだけで一覧にできます。<br>引越ナビなら全部まとめて無料で使えます。</p>
-    <a href="/">今すぐ引越ナビを使う</a>
+    <a href="/" data-cta="bottom">今すぐ引越ナビを使う</a>
   </div>
 
   <div class="author-box" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin:40px 0 8px;">
@@ -619,5 +619,6 @@ p { margin-bottom: 16px; }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

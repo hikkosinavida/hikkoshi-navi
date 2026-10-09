@@ -130,7 +130,7 @@ tr:last-child td { border-bottom: none; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">アプリを使う</a>
+    <a href="/" class="cta-btn" data-cta="header">アプリを使う</a>
   </div>
 </header>
 
@@ -396,7 +396,7 @@ tr:last-child td { border-bottom: none; }
   <div class="cta-box">
     <h3>引越ナビで手続きを管理しよう</h3>
     <p>業者選びが終わったら、役所届出・ライフライン・住所変更など、引っ越し前後にやるべき手続きを一括管理。チェックリスト形式で漏れなく進められます。</p>
-    <a href="/">引越ナビを使ってみる</a>
+    <a href="/" data-cta="bottom">引越ナビを使ってみる</a>
   </div>
 
   <div style="text-align:center;margin:32px 0;">
@@ -451,5 +451,6 @@ tr:last-child td { border-bottom: none; }
   <p><a href="/">引越ナビ</a> — 引っ越しの手続きをもう忘れない</p>
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

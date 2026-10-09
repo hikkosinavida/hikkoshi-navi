@@ -334,7 +334,7 @@ table tr:last-child td { border-bottom: none; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">アプリを使う</a>
+    <a href="/" class="cta-btn" data-cta="header">アプリを使う</a>
   </div>
 </header>
 
@@ -592,7 +592,7 @@ table tr:last-child td { border-bottom: none; }
   <div class="cta-box">
     <h2>引っ越しの準備、もう忘れない</h2>
     <p>引越ナビなら、引っ越し日を入力するだけで<br>やることリストを自動作成。当日の段取りも万全に。</p>
-    <a href="/">今すぐ引越ナビを使う</a>
+    <a href="/" data-cta="bottom">今すぐ引越ナビを使う</a>
   </div>
 
   <div style="text-align:center;margin:32px 0;">
@@ -649,5 +649,6 @@ table tr:last-child td { border-bottom: none; }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

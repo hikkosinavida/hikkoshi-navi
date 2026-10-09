@@ -449,7 +449,7 @@ table td { background: var(--bg-card); }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">手続きリストを作る →</a>
+    <a href="/" class="cta-btn" data-cta="header">手続きリストを作る →</a>
   </div>
 </header>
 
@@ -671,7 +671,7 @@ table td { background: var(--bg-card); }
   <div class="cta-box">
     <h2>引っ越しの手続き、全部まとめて管理</h2>
     <p>ネット回線だけじゃない。電気・ガス・水道・役所…やること全部をリスト化して進捗管理。</p>
-    <a href="/">引越ナビを使ってみる →</a>
+    <a href="/" data-cta="bottom">引越ナビを使ってみる →</a>
   </div>
 
   <!-- Related -->
@@ -729,5 +729,6 @@ table td { background: var(--bg-card); }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

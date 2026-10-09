@@ -298,6 +298,12 @@ p { margin-bottom: 16px; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -310,7 +316,7 @@ p { margin-bottom: 16px; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">無料で使う</a>
+    <a href="/" class="cta-btn" data-cta="header">無料で使う</a>
   </div>
 </header>
 
@@ -369,6 +375,11 @@ p { margin-bottom: 16px; }
 
   <div class="tip">
     <strong>ポイント：</strong>別の市区町村へ引っ越すときは「転出届（旧住所）→ 転入届（新住所）」の2つ、同じ市区町村の中での引っ越しなら「転居届」1つだけです。政令指定都市で区をまたいで引っ越すときなど、扱いが違う場合もあるので、住んでいる自治体のWebサイトで確認しましょう。
+  </div>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>引っ越し日を入れるだけで、手続きの期限がわかる</strong><span>転出届・転入届・マイナンバーカードなど、やることを期限つきで一覧にできます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
   </div>
 
   <h2 id="kigen">2. 期限と、届け出なかったとき</h2>
@@ -466,7 +477,7 @@ p { margin-bottom: 16px; }
   <div class="cta-box">
     <h2>引っ越しの手続き、もう忘れない</h2>
     <p>引っ越しの日を入れるだけで、転出届・転入届などのやることを期限つきで一覧にできます。<br>引越ナビなら全部まとめて無料で使えます。</p>
-    <a href="/">今すぐ引越ナビを使う</a>
+    <a href="/" data-cta="bottom">今すぐ引越ナビを使う</a>
   </div>
 
   <div style="text-align:center;margin:32px 0;">
@@ -524,5 +535,6 @@ p { margin-bottom: 16px; }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>

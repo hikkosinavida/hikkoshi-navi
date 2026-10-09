@@ -301,6 +301,12 @@ p { margin-bottom: 16px; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -313,7 +319,7 @@ p { margin-bottom: 16px; }
       <a href="/about.html">運営者情報</a>
       <a href="/contact.html">お問い合わせ</a>
     </nav>
-    <a href="/" class="cta-btn">無料で使う</a>
+    <a href="/" class="cta-btn" data-cta="header">無料で使う</a>
   </div>
 </header>
 
@@ -345,6 +351,11 @@ p { margin-bottom: 16px; }
   <p>道路交通法では、免許証に書かれている住所などが変わったときは、<strong>速やかに</strong>住所地を管轄する公安委員会に届け出ることになっています（第94条第1項）。ほかの都道府県へ引っ越した場合は、<strong>引っ越したあとの住所地</strong>の公安委員会に届け出ます。「何日以内」という日数は決められていませんが、届出をしない場合は、2万円以下の罰金又は科料の対象になります（第121条）。</p>
   <div class="tip">
     <strong>ポイント：</strong>免許証は身分証明書としてもよく使われます。住所が古いままだと、銀行や携帯電話の手続きで使えないことがあるので、引っ越したら早めに変更しましょう。新しい住所を確認できる書類が必要になるので、<strong>先に市区町村で転入届（転居届）を済ませてから</strong>手続きするとスムーズです。転入届の出し方は「<a href="/blog/hikkoshi-tenshutsu-tennyu.html" style="color:var(--primary);">転出届・転入届・転居届の出し方</a>」で解説しています。
+  </div>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>引っ越し日を入れるだけで、手続きの期限がわかる</strong><span>転出届・転入届・マイナンバーカードなど、やることを期限つきで一覧にできます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
   </div>
 
   <h2 id="mochikata">2. 免許証の持ち方で手続きが変わる</h2>
@@ -471,7 +482,7 @@ p { margin-bottom: 16px; }
   <div class="cta-box">
     <h2>免許証の住所変更も、やることリストで管理</h2>
     <p>転入届から免許証・マイナンバーカードの住所変更まで、引っ越し日を入れるだけで一覧にできます。<br>引越ナビなら全部まとめて無料で使えます。</p>
-    <a href="/">今すぐ引越ナビを使う</a>
+    <a href="/" data-cta="bottom">今すぐ引越ナビを使う</a>
   </div>
 
   <div style="text-align:center;margin:32px 0;">
@@ -529,5 +540,6 @@ p { margin-bottom: 16px; }
   <p style="margin-top: 8px;">&copy; 2026 引越ナビ</p>
 </footer>
 
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(a&&window.gtag)gtag('event','tool_cta_click',{cta_position:a.getAttribute('data-cta')});});</script>
 </body>
 </html>
