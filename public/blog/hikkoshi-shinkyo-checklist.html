@@ -321,6 +321,12 @@ table tr:last-child td { border-bottom: none; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -388,6 +394,11 @@ table tr:last-child td { border-bottom: none; }
 
   <div class="tip">
     <strong>ポイント：</strong>入居時の傷・汚れの記録は「入居時チェックシート」として管理会社から渡されることもあります。渡されない場合は自分で作成し、コピーを管理会社にも共有しておくとより安心です。
+  </div>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>入居後の手続きの期限を、引っ越し日から自動で</strong><span>引っ越し日を入れると、転入届（14日以内）・マイナンバーカード・住所変更など、入居後の手続きの期限を一覧にできます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
   </div>
 
   <h2 id="lifeline">2. ライフラインの確認</h2>

@@ -301,6 +301,12 @@ p { margin-bottom: 16px; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -344,6 +350,11 @@ p { margin-bottom: 16px; }
   <p>法務省によると、婚姻届は、届け出る人の<strong>本籍地または所在地</strong>の市区町村の役所に出せます。引っ越し先の市区町村に、転入届と同じ日に出すこともできます。</p>
   <div class="tip">
     <strong>ポイント：</strong>令和6年（2024年）3月1日から、本籍地ではない市区町村に婚姻届を出す場合でも、戸籍謄本などの添付は原則不要になりました（法務省）。必要なものや受付時間は、届け出る市区町村のWebサイトで確認しましょう。
+  </div>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>結婚と引っ越しの手続き、期限を日付で確認</strong><span>引っ越し日を入れると、転入届・マイナンバーカードの住所変更など、引っ越しの手続きを期限つきで一覧にできます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
   </div>
 
   <h2 id="junban">2. 結婚と引っ越しの手続きの順番</h2>

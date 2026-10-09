@@ -322,6 +322,12 @@ table tr:last-child td { border-bottom: none; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -390,6 +396,11 @@ table tr:last-child td { border-bottom: none; }
   <p>前日までの荷造りの進め方は「<a href="/blog/hikkoshi-nizukuri-kotsu.html" style="color:var(--primary);">引っ越しの荷造りのコツ</a>」で解説しています。</p>
 
   <p>洗濯機の水抜きの手順は「<a href="/blog/hikkoshi-sentakuki-mizunuki.html" style="color:var(--primary);">洗濯機の水抜きのやり方</a>」で解説しています。</p>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>当日までと当日のあとにやることを、期限つきで一覧に</strong><span>引っ越し日を入れると、前日までの準備から引っ越したあとの届出まで、やることを日付順に確認できます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
+  </div>
 
   <h2 id="asa">2. 当日朝（旧居）のやること</h2>
   <p>引っ越し当日の朝は、最終確認と身の回りの整理から始めます。</p>

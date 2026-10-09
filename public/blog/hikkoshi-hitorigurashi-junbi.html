@@ -346,6 +346,12 @@ p { margin-bottom: 16px; }
 .content p a, .content td a, .content dd a, .content li a, .content .tip a, .content .warning a { text-decoration: underline; text-underline-offset: 3px; }
 .content .toc a { text-decoration: none; }
 .footer p a { text-decoration: underline; text-underline-offset: 3px; }
+.tool-cta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; background: var(--primary-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin: 28px 0; }
+.tool-cta-text { flex: 1 1 260px; }
+.tool-cta-text strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.tool-cta-text span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.content .tool-cta a { flex: 0 0 auto; background: var(--primary); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 8px; }
+.content .tool-cta a:hover { opacity: 0.9; }
 </style>
 </head>
 <body>
@@ -463,6 +469,11 @@ p { margin-bottom: 16px; }
     <tr><td>500km以上（遠距離）</td><td>8万9,162円</td><td>11万5,894円</td></tr>
   </table>
   <p>ほかの距離や人数の料金は「<a href="/blog/hikkoshi-hiyou-souba.html" style="color:var(--primary);">引っ越し費用の相場</a>」で紹介しています。</p>
+
+  <div class="tool-cta">
+    <div class="tool-cta-text"><strong>一人暮らしの引っ越しの手続きを、期限つきで一覧に</strong><span>引っ越し日を入れて「一人暮らし」を選ぶと、解約連絡・ライフライン・転入届など、やることを日付順に確認できます。無料・登録不要。</span></div>
+    <a href="/" data-cta="mid">やることリストを作る →</a>
+  </div>
 
   <h2 id="furniture">2. 必要な家具・家電リスト</h2>
   <p>すべてを最初から揃える必要はありません。<strong>初日から必要なもの</strong>と<strong>後から買い足せるもの</strong>に分けて準備しましょう。</p>
