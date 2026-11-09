@@ -1145,6 +1145,11 @@ footer a { display: inline-block; padding: 6px 4px; }
           <h3>引っ越しで介護保険はどうなる？</h3>
           <p>要介護認定の引き継ぎは14日以内。保険料と住所地特例。</p>
         </a>
+        <a href="/blog/hikkoshi-shogaisha-techo.html" class="blog-card">
+          <span class="blog-tag">福祉</span>
+          <h3>引っ越しで障害者手帳はどうなる？</h3>
+          <p>身体・精神は30日以内、療育手帳は県外で作り直し。</p>
+        </a>
         <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
           <span class="blog-tag">ペット</span>
           <h3>ペットの引っ越し手続き</h3>
@@ -1238,6 +1243,7 @@ const OPTS = [
   { k:'school', label:'小・中学生がいる' },
   { k:'kaigo',  label:'介護を受けている家族がいる' },
   { k:'inkan',  label:'印鑑登録をしている' },
+  { k:'shogai', label:'障害者手帳を持っている' },
 ];
 function defaultOpts(hh) { return { rent:true, hoiku: hh === 'family', school: hh === 'family' }; }
 let formOpts = defaultOpts('single');
@@ -1316,6 +1322,9 @@ function baseTasks() {
     t.push({ id:'kaigo_cm', cat:'admin', name:'ケアマネジャーに引っ越しを相談', dl:dateOffset(m,-30), p:'mid', detail:'引っ越し先で使う事業所や、サービスが途切れないための段取りを相談する。転入したら、ケアマネジャーの事業所が変わらなくても、ケアプランの届け出が必要な市区町村がある。期限は引越ナビの目安。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
     t.push({ id:'kaigo_out', cat:'admin', name:'介護保険証を返す・受給資格証明書をもらう', dl:dateOffset(m,-14), p:'high', detail:'ほかの市区町村へ引っ越すときは、転出の手続きと一緒に介護保険証などを返し、要介護・要支援の認定を受けている人は「受給資格証明書」をもらう。マイナポータルで転出した場合は、証明書を出さない市区町村もある。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
     t.push({ id:'kaigo_in', cat:'admin', name:'要介護認定の引き継ぎの申請', dl:dateOffset(m,14), p:'high', detail:'ほかの市区町村へ引っ越したら、住み始めた日から14日以内に新しい市区町村で申請すると、今の介護度を引き継げる（介護保険法第36条）。14日を過ぎると引き継げない。負担限度額認定を受けている人は、あらためて申請する。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
+  }
+  if (o.shogai) {
+    t.push({ id:'shogai', cat:'admin', name:'障害者手帳の住所変更', dl:dateOffset(m,30), p:'high', detail:'身体障害者手帳と精神障害者保健福祉手帳は、引っ越してから30日以内に、新しい住所の市区町村の障害福祉の窓口で届け出る（政令）。ほかの都道府県へ引っ越すと、精神の手帳は新しい手帳と引き換え、療育手帳は作り直しになる。障害福祉サービスの受給者証や自立支援医療も、新しい市区町村で手続きする。', guide:'/blog/hikkoshi-shogaisha-techo.html' });
   }
   if (o.inkan) {
     t.push({ id:'inkan', cat:'admin', name:'印鑑登録のし直し', dl:dateOffset(m,14), p:'mid', detail:'ほかの市区町村へ引っ越すと、転出届で印鑑登録は自動的に廃止になる。印鑑証明が必要なら、新しい市区町村で登録し直す。転出の前日までなら前の住所で印鑑証明を取れる市区町村もある（神戸市）。同じ市区町村の中の引っ越しなら引き継がれる。期限は引越ナビの目安。', guide:'/blog/hikkoshi-inkan-touroku.html' });
@@ -1891,6 +1900,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">転校手続き</a>
   <a href="/blog/hikkoshi-hoikuen-tenen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">保育園の転園</a>
   <a href="/blog/hikkoshi-kaigo-hoken.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">介護保険</a>
+  <a href="/blog/hikkoshi-shogaisha-techo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">障害者手帳</a>
   <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ライフライン</a>
   <a href="/blog/hikkoshi-taikyo-hiyou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">退去費用</a>
   <a href="/blog/hikkoshi-hitorigurashi-junbi.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">一人暮らし</a>
