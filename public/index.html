@@ -1150,6 +1150,11 @@ footer a { display: inline-block; padding: 6px 4px; }
           <h3>引っ越しで障害者手帳はどうなる？</h3>
           <p>身体・精神は30日以内、療育手帳は県外で作り直し。</p>
         </a>
+        <a href="/blog/hikkoshi-kodomo-iryousho.html" class="blog-card">
+          <span class="blog-tag">子ども</span>
+          <h3>引っ越しで子どもの医療証はどうなる？</h3>
+          <p>前の医療証は転出日の前日まで。届くまでは払い戻し。</p>
+        </a>
         <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
           <span class="blog-tag">ペット</span>
           <h3>ペットの引っ越し手続き</h3>
@@ -1334,7 +1339,7 @@ function baseTasks() {
   }
   if (o.school || o.hoiku) {
     t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'転出予定日の次の日から15日以内に、新しい市区町村で申請する（こども家庭庁）。遅れると、遅れた月の分を受け取れなくなることがある。' });
-    t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'前の市区町村と新しい市区町村で手続きする。助成の内容は自治体によって違う。' });
+    t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'前の市区町村の医療証は転出日の前日までしか使えない（横浜市）ので、使わずに返す。新しい市区町村では転入したらすぐに申請する（板橋区は14日以内なら転入日にさかのぼる）。新しい医療証が届くまでの医療費は、いったん払ってあとで払い戻しの申請をする。助成の内容は市区町村によって違う。', guide:'/blog/hikkoshi-kodomo-iryousho.html' });
   }
   return t;
 }
@@ -1899,6 +1904,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-pet-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ペット</a>
   <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">転校手続き</a>
   <a href="/blog/hikkoshi-hoikuen-tenen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">保育園の転園</a>
+  <a href="/blog/hikkoshi-kodomo-iryousho.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">子どもの医療証</a>
   <a href="/blog/hikkoshi-kaigo-hoken.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">介護保険</a>
   <a href="/blog/hikkoshi-shogaisha-techo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">障害者手帳</a>
   <a href="/blog/hikkoshi-lifeline-tetsuzuki.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">ライフライン</a>
