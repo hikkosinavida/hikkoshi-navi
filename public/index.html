@@ -1160,6 +1160,11 @@ footer a { display: inline-block; padding: 6px 4px; }
           <h3>外国籍の人の引っ越し手続き</h3>
           <p>在留カードの住所変更は14日以内。転入届と一緒に。</p>
         </a>
+        <a href="/blog/hikkoshi-jidou-teate.html" class="blog-card">
+          <span class="blog-tag">子ども</span>
+          <h3>引っ越しで児童手当はどうなる？</h3>
+          <p>引っ越し先で15日以内に申請。遅れた月の分はもらえない。</p>
+        </a>
         <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
           <span class="blog-tag">ペット</span>
           <h3>ペットの引っ越し手続き</h3>
@@ -1347,7 +1352,7 @@ function baseTasks() {
     t.push({ id:'school',  cat:'admin', name:'学校の転校手続き',       dl:dateOffset(m,-14), p:'high', detail:'今の学校に連絡して在学証明書などを受け取り、新しい市区町村の教育委員会で手続きする（公立小中学校の場合）。', guide:'/blog/hikkoshi-kodomo-tenkou.html' });
   }
   if (o.school || o.hoiku) {
-    t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'転出予定日の次の日から15日以内に、新しい市区町村で申請する（こども家庭庁）。遅れると、遅れた月の分を受け取れなくなることがある。' });
+    t.push({ id:'child',   cat:'admin', name:'児童手当の届出',          dl:dateOffset(m,15),  p:'high', detail:'ほかの市区町村へ引っ越すと今の受給資格はなくなるので、引っ越し先で認定請求書を出す。期限は転出予定日の次の日から15日以内（こども家庭庁）。遅れると、遅れた月の分を受け取れなくなる。転入届と同じ日に申請すると確実。公務員は勤務先で手続きする。', guide:'/blog/hikkoshi-jidou-teate.html' });
     t.push({ id:'medkid',  cat:'admin', name:'子ども医療費助成の変更',  dl:dateOffset(m,14),  p:'mid',  detail:'前の市区町村の医療証は転出日の前日までしか使えない（横浜市）ので、使わずに返す。新しい市区町村では転入したらすぐに申請する（板橋区は14日以内なら転入日にさかのぼる）。新しい医療証が届くまでの医療費は、いったん払ってあとで払い戻しの申請をする。助成の内容は市区町村によって違う。', guide:'/blog/hikkoshi-kodomo-iryousho.html' });
   }
   return t;
@@ -1914,6 +1919,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-kodomo-tenkou.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">転校手続き</a>
   <a href="/blog/hikkoshi-hoikuen-tenen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">保育園の転園</a>
   <a href="/blog/hikkoshi-kodomo-iryousho.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">子どもの医療証</a>
+  <a href="/blog/hikkoshi-jidou-teate.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">児童手当</a>
   <a href="/blog/hikkoshi-kaigo-hoken.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">介護保険</a>
   <a href="/blog/hikkoshi-shogaisha-techo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">障害者手帳</a>
   <a href="/blog/hikkoshi-zairyu-card.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">在留カード</a>
