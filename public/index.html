@@ -1170,6 +1170,11 @@ footer a { display: inline-block; padding: 6px 4px; }
           <h3>引っ越しで児童手当はどうなる？</h3>
           <p>引っ越し先で15日以内に申請。遅れた月の分はもらえない。</p>
         </a>
+        <a href="/blog/hikkoshi-hitorioya.html" class="blog-card">
+          <span class="blog-tag">子ども</span>
+          <h3>引っ越しで児童扶養手当はどうなる？</h3>
+          <p>引っ越す前と14日以内に住所変更。医療費助成は申請し直し。</p>
+        </a>
         <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
           <span class="blog-tag">ペット</span>
           <h3>ペットの引っ越し手続き</h3>
@@ -1261,6 +1266,7 @@ const OPTS = [
   { k:'dog',    label:'犬を飼っている' },
   { k:'hoiku',  label:'保育園・幼稚園の子がいる' },
   { k:'school', label:'小・中学生がいる' },
+  { k:'hitorioya', label:'ひとり親家庭（児童扶養手当）' },
   { k:'kaigo',  label:'介護を受けている家族がいる' },
   { k:'kouki',  label:'75歳以上の家族がいる' },
   { k:'inkan',  label:'印鑑登録をしている' },
@@ -1344,6 +1350,10 @@ function baseTasks() {
     t.push({ id:'kaigo_cm', cat:'admin', name:'ケアマネジャーに引っ越しを相談', dl:dateOffset(m,-30), p:'mid', detail:'引っ越し先で使う事業所や、サービスが途切れないための段取りを相談する。転入したら、ケアマネジャーの事業所が変わらなくても、ケアプランの届け出が必要な市区町村がある。期限は引越ナビの目安。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
     t.push({ id:'kaigo_out', cat:'admin', name:'介護保険証を返す・受給資格証明書をもらう', dl:dateOffset(m,-14), p:'high', detail:'ほかの市区町村へ引っ越すときは、転出の手続きと一緒に介護保険証などを返し、要介護・要支援の認定を受けている人は「受給資格証明書」をもらう。マイナポータルで転出した場合は、証明書を出さない市区町村もある。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
     t.push({ id:'kaigo_in', cat:'admin', name:'要介護認定の引き継ぎの申請', dl:dateOffset(m,14), p:'high', detail:'ほかの市区町村へ引っ越したら、住み始めた日から14日以内に新しい市区町村で申請すると、今の介護度を引き継げる（介護保険法第36条）。14日を過ぎると引き継げない。負担限度額認定を受けている人は、あらためて申請する。', guide:'/blog/hikkoshi-kaigo-hoken.html' });
+  }
+  if (o.hitorioya) {
+    t.push({ id:'fuyou_out', cat:'admin', name:'児童扶養手当の転出の届け出', dl:dateOffset(m,-14), p:'high', detail:'ほかの市区町村へ引っ越すときは、引っ越す前に今の市区町村の手当の窓口へ届け出る（児童扶養手当法施行規則第6条第1項）。手当証書と本人確認書類を持っていく。住民票の転出届とは別の手続き。ひとり親家庭の医療費助成の受給者証も返す。同じ市区町村の中の引っ越しなら、引っ越したあとの住所変更だけでよい。', guide:'/blog/hikkoshi-hitorioya.html' });
+    t.push({ id:'fuyou_in', cat:'admin', name:'児童扶養手当の住所変更（引っ越し先）', dl:dateOffset(m,14), p:'high', detail:'引っ越したら14日以内に住所変更を届け出る（同規則第6条第2項）。ほかの市区町村へ移ったときは、新しい住所の世帯全員の住民票の写しをつける。同じ市内の引っ越しでも必要。ひとり親家庭の医療費助成も、引っ越し先で申請し直す。実家に移るなど一緒に住む人が変わるときは、手当が止まることがあるので窓口に相談する。', guide:'/blog/hikkoshi-hitorioya.html' });
   }
   if (o.kouki) {
     if (cross) {
@@ -1934,6 +1944,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-hoikuen-tenen.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">保育園の転園</a>
   <a href="/blog/hikkoshi-kodomo-iryousho.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">子どもの医療証</a>
   <a href="/blog/hikkoshi-jidou-teate.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">児童手当</a>
+  <a href="/blog/hikkoshi-hitorioya.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">児童扶養手当</a>
   <a href="/blog/hikkoshi-kaigo-hoken.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">介護保険</a>
   <a href="/blog/hikkoshi-kouki-koureisha.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">後期高齢者医療</a>
   <a href="/blog/hikkoshi-shogaisha-techo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">障害者手帳</a>
