@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://hikkosi-navi.com/blog/hikkoshi-tetsuzuki-list.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://hikkosi-navi.com/blog/hikkoshi-jusho-henko.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -362,7 +362,7 @@
   </url>
   <url>
     <loc>https://hikkosi-navi.com/blog/hikkoshi-shogaisha-techo.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -399,6 +399,12 @@
   <url>
     <loc>https://hikkosi-navi.com/blog/hikkoshi-ninpu.html</loc>
     <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hikkosi-navi.com/blog/hikkoshi-nanbyo.html</loc>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
