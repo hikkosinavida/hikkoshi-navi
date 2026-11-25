@@ -1185,6 +1185,11 @@ footer a { display: inline-block; padding: 6px 4px; }
           <h3>引っ越しで難病の受給者証はどうなる？</h3>
           <p>県外・指定都市へは転入の申請。申請した日から有効。</p>
         </a>
+        <a href="/blog/hikkoshi-jiritsu-shien.html" class="blog-card">
+          <span class="blog-tag">医療</span>
+          <h3>引っ越しで自立支援医療はどうなる？</h3>
+          <p>精神通院は県外・指定都市へ、更生・育成は市外へで申請し直し。</p>
+        </a>
         <a href="/blog/hikkoshi-pet-tetsuzuki.html" class="blog-card">
           <span class="blog-tag">ペット</span>
           <h3>ペットの引っ越し手続き</h3>
@@ -1282,6 +1287,7 @@ const OPTS = [
   { k:'kouki',  label:'75歳以上の家族がいる' },
   { k:'inkan',  label:'印鑑登録をしている' },
   { k:'shogai', label:'障害者手帳を持っている' },
+  { k:'jiritsu', label:'自立支援医療の受給者証がある' },
   { k:'nanbyo', label:'難病・小児慢性の受給者証がある' },
   { k:'gaikoku', label:'外国籍の家族がいる' },
 ];
@@ -1381,6 +1387,14 @@ function baseTasks() {
   }
   if (o.shogai) {
     t.push({ id:'shogai', cat:'admin', name:'障害者手帳の住所変更', dl:dateOffset(m,30), p:'high', detail:'身体障害者手帳と精神障害者保健福祉手帳は、引っ越してから30日以内に、新しい住所の市区町村の障害福祉の窓口で届け出る（政令）。ほかの都道府県へ引っ越すと、精神の手帳は新しい手帳と引き換え、療育手帳は作り直しになる。障害福祉サービスの受給者証や自立支援医療も、新しい市区町村で手続きする。', guide:'/blog/hikkoshi-shogaisha-techo.html' });
+  }
+  if (o.jiritsu) {
+    if (cross) {
+      t.push({ id:'jiritsu_out', cat:'admin', name:'自立支援医療の受給者証の返し方を確かめる', dl:dateOffset(m,-14), p:'mid', detail:'ほかの都道府県へ引っ越すと、引っ越し先で申請し直す（障害者総合支援法第57条）。前の受給者証は引っ越し先の申請で使う地域が多い（千葉市・北九州市）ので、なくさずに持っていく。前の受給者証は、引っ越し先で新しい受給者証が届いてから返すなど、返し方は地域で違うので今の窓口に確かめる（八千代市）。主治医に相談し、引っ越し先の病院・薬局も決めておく。期限は引越ナビの目安。', guide:'/blog/hikkoshi-jiritsu-shien.html' });
+      t.push({ id:'jiritsu_in', cat:'admin', name:'自立支援医療の申請（引っ越し先）', dl:dateOffset(m,14), p:'high', detail:'転入届と同じ日に、引っ越し先の窓口で申請する。新しい受給者証は申請した日から有効で（宮城県）、申請までのあいだの通院は実費になることがある（八千代市）。持ち物は前の受給者証・健康保険の資格情報がわかるもの・マイナンバーがわかるもの・同意書など。前の受給者証が有効期間内なら、新しい診断書なしで手続きできる地域が多い（北九州市・千葉市・静岡市）。決定まで約2か月かかることも（千葉市）。期限は引越ナビの目安。', guide:'/blog/hikkoshi-jiritsu-shien.html' });
+    } else {
+      t.push({ id:'jiritsu_in', cat:'admin', name:'自立支援医療の住所変更・申請', dl:dateOffset(m,14), p:'high', detail:'精神通院医療は、同じ都道府県の中なら、受給者証を添えて住所の変更を届け出る（障害者総合支援法施行令第32条）。ただし政令指定都市に出入りするときは、引っ越し先で申請し直す。更生医療・育成医療は市区町村の制度なので、ほかの市区町村へ引っ越すと、引っ越し先で申請し直す（原則として転出日までしか使えない＝八千代市）。転入届と同じ日に手続きすると安心。期限は引越ナビの目安。', guide:'/blog/hikkoshi-jiritsu-shien.html' });
+    }
   }
   if (o.nanbyo) {
     if (cross) {
@@ -1971,6 +1985,7 @@ function updateNotifBtn() {
   <a href="/blog/hikkoshi-hitorioya.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">児童扶養手当</a>
   <a href="/blog/hikkoshi-ninpu.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">妊娠中の引っ越し</a>
   <a href="/blog/hikkoshi-nanbyo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">難病の受給者証</a>
+  <a href="/blog/hikkoshi-jiritsu-shien.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">自立支援医療</a>
   <a href="/blog/hikkoshi-kaigo-hoken.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">介護保険</a>
   <a href="/blog/hikkoshi-kouki-koureisha.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">後期高齢者医療</a>
   <a href="/blog/hikkoshi-shogaisha-techo.html" style="color:var(--link-strong);text-decoration:none;margin:0 8px;">障害者手帳</a>
